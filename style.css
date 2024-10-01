@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.services {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.team-member {
+    margin: 10px 0;
+}
+
+.testimonials {
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonial {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.navbar__logo{
+    position: absolute;
+    height: 1px;
+    left: 0%;
+    width: 10px;
+}
+
+.main{
+        margin-bottom: 12px; /* Adjust the value as needed */
+      }
+
+      footer {
+        padding-top: 50px; /* Adjust the value as needed */
+      }
