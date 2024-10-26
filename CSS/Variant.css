@@ -1,0 +1,117 @@
+*
+{
+    margin: 0px;
+    padding:0px;
+
+}
+body{
+    color:azure;
+}
+.submit_form
+{
+    width:50%;
+    height:40% ;
+    background-color:  rgb(53, 25, 0);
+    padding: 5% 5% 0%  5%;
+    margin-left: 20%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    
+    
+}
+header
+{ 
+    background-color: black;}
+footer
+{
+    background-color: black;
+   
+}
+.inner_nav
+{
+    display: block;
+    background-color:rgb(74, 93, 35);
+    padding:1.5% 0% 1.5% 1%; 
+  overflow: hidden;
+ 
+}
+.inner_nav h3
+{
+    display: inline-block;
+   
+    
+}
+.inner_nav   a
+{
+    text-decoration: none;
+    text-align:center;
+    padding:2.5% 0% 2.5% 1%; 
+      color: black;
+   
+   
+}
+.inner_nav a:hover
+{
+    background-color: aliceblue;
+
+}
+.inner_nav a:focus
+{
+    background-color: aliceblue;
+
+}
+
+.submit_form form
+{
+   
+    padding: 0% 5% 5%  5%;
+
+}
+.submit_form form div div
+{
+
+display: inline-block;
+width: 45%;
+padding-bottom: 2%;
+}
+.type_leave
+{
+    background-color: aquamarine;
+    width: 100%;
+}
+.submit_form form label
+{
+    font-size: large;
+}
+.submit_form form input
+{
+ 
+    margin: 5px 10px 10px 20px;
+    
+}
+.submit_form form button
+{
+    color:  rgb(53, 25, 0);
+    margin-left: 5%;
+    margin-top: 4%;
+    padding: 5px 13px 5px 13px;
+}
+.submit_form form button:hover
+{    
+    color:white;
+    background-color: rgb(53, 25, 0);
+
+}
+.submit_form form h2 
+{
+    padding: 20px 0px 20px 0px;
+}
+
+.submit_form div
+{
+    padding:0% 0% 0% 2%;
+    align-self:left;
+    width: 100%;
+}
+
+
