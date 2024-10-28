@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave Balances Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="200" height="150"></canvas>
+    <script>
+        // Replace with your actual data
+        var employeeNames = ["Employee 1", "Employee 2", "Employee 3"];
+        var leaveBalances = [10, 15, 20];
+
+        // Calculate total and percentages
+        var totalLeave = leaveBalances.reduce((acc, val) => acc + val, 0);
+        var percentages = leaveBalances.map(balance => (balance / totalLeave) * 100);
+
+        // Create the pie chart
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels:   
+ employeeNames,
+                datasets: [{
+                    data: percentages,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Leave Balances'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
