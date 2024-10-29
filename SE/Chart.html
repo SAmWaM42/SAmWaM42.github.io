@@ -13,7 +13,7 @@
 
         // Calculate total and percentages
         var totalLeave = leaveBalances.reduce((acc, val) => acc + val, 0);
-        var percentages = leaveBalances.map(balance => (balance / totalLeave) * 100);
+        //var percentages = leaveBalances.map(balance => (balance / totalLeave) * 100);
 
         // Create the pie chart
         var ctx = document.getElementById('myChart').getContext('2d');

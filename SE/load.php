@@ -1,4 +1,6 @@
 <?php
-    require_once "insertdata.php";
+    require_once "dbconnectionpdo.php";
+    require_once "leavebalancetracking.php";
     //$Objinsert = new insertdata($pdo);
-    $ObjDb = new dbconnection();
+    $ObjDb = new dbconnectionpdo();
+    $pdo = $ObjDb->connection();

@@ -1,5 +1,5 @@
 <?php
-    class dbconnection{ 
+    class dbconnectionpdo{ 
         
         private $servername = 'localhost';
         private $username = 'root';
@@ -17,6 +17,6 @@
     }catch(PDOException $e){
         echo"Connection failed: ".$e->getMessage();
     }}}
-    $ObjDb = new dbconnection();
+    $ObjDb = new dbconnectionpdo();
     $ObjDb->connection();
 ?>
