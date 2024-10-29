@@ -1,6 +1,6 @@
 <?php
 // Include necessary classes
-require_once 'Database.php';
+require_once '../mod2/Database.php';
 require_once 'User.php';
 
 // Initialize Database
