@@ -1,6 +1,10 @@
 <?php
 // Purpose: The HR views the leave requests made by the employees and either accepts or rejects them. 
 // Before he/she does this, the default status of the leave request is pending.
+session_start();
+
+require_once('../load.php');
+
 $severname = "localhost:3307";
 $username = "root";
 $password = "b@bad1ana";
