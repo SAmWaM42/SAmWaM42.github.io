@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const totalDays = 20;
-const daysTaken = 15;
-const daysRemaining = totalDays - daysTaken;
-    const ctx = document.querySelector('.my_chart').getContext('2d');
+    const sicktotalDays = 15;
+const sickdaysTaken = 8;
+const sickdaysRemaining = sicktotalDays - sickdaysTaken;
+    const ctx = document.querySelector('.my_chart2').getContext('2d');
 
     // Create the pie chart
     const myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Days Taken', 'Days Remaining'],
+            labels: [' Sick Days Taken', 'Sick Days Remaining'],
             datasets: [{
-                data: [daysTaken, daysRemaining],
+                data: [sickdaysTaken, sickdaysRemaining],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)', // Red for Days Taken
                     'rgba(54, 162, 235, 0.6)' // Blue for Days Remaining
@@ -41,6 +41,6 @@ const daysRemaining = totalDays - daysTaken;
     });
 
     // Update the details in the HTML
-    document.querySelector('.percentage:nth-of-type(1)').textContent = daysRemaining;
-    document.querySelector('.percentage:nth-of-type(2)').textContent = daysTaken;
+    document.querySelector('sickdaysRemaining').textContent = sickdaysRemaining;
+    document.querySelector('sickdaysTaken').textContent = sickdaysTaken;
 });
