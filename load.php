@@ -26,4 +26,4 @@ $includes=new inc();
 $conn=new conn();
 $flow=new flow();
 
-$conn->connection("localhost","root","424635","Easy_Leave");
+$conn->connection("localhost:3308","root","HomeEcide42","Easy_Leave");
