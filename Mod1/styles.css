@@ -1,0 +1,83 @@
+/* Add a square for the company logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.company-logo {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #8B4513; /* Brown border */
+    animation: logoBounce 2s ease-in-out infinite;
+    transition: transform 0.3s;
+}
+
+
+/* Keyframe animation for bouncing logo */
+@keyframes logoBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Keyframe animation for bouncing logo */
+@keyframes logoBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+body {
+    font-family: cursive;
+    background: url('uploads/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.form-container {
+    width: 300px;
+    margin: 100px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #8B4513; /* Brown border */
+    border-radius: 4px;
+    background-color: #F5F5DC; /* Light brown background */
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #3E8E41; /* Darker green on hover */
+}
+
+h2 {
+    color: #8B4513; /* Brown heading */
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
