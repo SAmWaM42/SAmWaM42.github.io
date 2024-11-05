@@ -11,41 +11,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="" class="navbar__links">
-                        Home
-                    </a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/" class="navbar__links">
-                        About
-                    </a>
-                </li>
-                <li class="navbar__btn">
-                    <a href="/" class="button">
-                        Sign Up
-                    </a>
-                </li>
-            </ul>
+   <!--<?php $IPATH = $_SERVER["DOCUMENT_ROOT"]."Layouts/php/"; include($IPATH. "Headernav.html"); ?>-->
+   <nav class="navbar">
+    <div class="navbar__container">
+        <a href="index.html" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </nav>
-
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="index.html" class="navbar__links">
+                    Home
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a href="index.html" class="navbar__links">
+                    About
+                </a>
+            </li>
+            <li class="navbar__btn">
+                <a href="login_employee.php" class="button">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
     <div class="main">
         <div class="main_container">
             <div class="main_content">
                 <H1>LEAVE APPLICATION</H1>
                 <h2>Automated</h2>
                 <p>See what makes us different.</p>
-                <button class="main__btn"><a href="/">Get Started</a></button>
+                <button class="main__btn"><a href="register_org.php">Get Started</a></button>
             </div>
             <div class="main_img--container">
                 <img src="images/pic1.svg.svg" alt="pic" id="main__img"/>
@@ -109,6 +109,7 @@
         </div>
         <p class="website__right"> &copy; TimeOff 2024. All rights reserved</p>
     </div>
+    <!--<?php include($IPATH. "Footernav.html"); ?>-->
     <script src ="app.js"></script>
 </body>
 </html>
