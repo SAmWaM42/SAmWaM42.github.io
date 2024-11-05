@@ -34,24 +34,38 @@ $result = $connection->execute_query($sql);
     <link rel="stylesheet" href="requests.css">
 </head>
 <body>
-    <header>
-        <p>HEADER</p>
-        <p>EASY LEAVE</p>
-        <p>LOGO</p>      
-    </header>
-
-    <nav class="navigation">
-        <ul>
-            <li><a href="#">PENDING REQUESTS</a></li>
-            <li id="nav3"><a href="#">SUBMIT REQUESTS</a></li>
-            <li id="nav3"><a href="#">DASHBOARD</a></li>
+<nav class="navbar">
+    <div class="navbar__container">
+        <a href="#" id="navbar__logo" color: = "black"> <img src= "../Timeoff[1].jpg" width="65px"> TimeOff</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    Home
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    About
+                </a>
+            </li>
+            <li class="navbar__btn">
+                <a href="login_employee.php" class="button">
+                    Login
+                </a>
+            </li>
         </ul>
-    </nav>
-    
+    </div>
+</nav>
+
     <main>
         <div class="tbl"> 
         <br>
-        <h1>PENDING REQUESTS</h1>
+        <h1 style="font-size:x-large; font-weight:bold;">PENDING REQUESTS</h1>
         <br>
         <table>
             <thead>
@@ -108,11 +122,43 @@ $result = $connection->execute_query($sql);
         
     </main>
 
-    <footer>
-          <div>Terms and Conditions</div>
-          <div>&copy;CopyRight</div>
-          <div>Help Contacts</div>
-    </footer>
+    <div class="footer__container">
+    <div class="footer__links">
+        <div class="footer__link--wrapper">
+         <div class="footer__link--items">
+            <h2>About Us</h2>
+            <a href = "/">How It works</a>
+            <a href = "/">Testimonials</a>
+            <a href = "/">Experience</a>
+            <a href = "/">Terms of Service</a>
+         </div>  
+         <div class="footer__link--items">
+            <h2>Services</h2>
+            <a href = "/">How It works</a>
+            <a href = "/">Testimonials</a>
+            <a href = "/">Experience</a>
+            <a href = "/">Terms of Service</a>
+         </div>  
+        </div>
+        <div class="footer__link--wrapper">
+            <div class="footer__link--items">
+               <h2>About Us</h2>
+               <a href = "/">How It works</a>
+               <a href = "/">Testimonials</a>
+               <a href = "/">Experience</a>
+               <a href = "/">Terms of Service</a>
+            </div>  
+            <div class="footer__link--items">
+               <h2>About Us</h2>
+               <a href = "/">How It works</a>
+               <a href = "/">Testimonials</a>
+               <a href = "/">Experience</a>
+               <a href = "/">Terms of Service</a>
+            </div>  
+           </div>
+    </div>
+    <p class="website__right"> &copy; TimeOff 2024. All rights reserved</p>
+</div>
 
 </body>
 </html>
