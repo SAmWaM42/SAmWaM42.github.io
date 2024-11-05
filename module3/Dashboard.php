@@ -37,6 +37,9 @@ $Objbalance->findBalance($emp_id, $leaveType);
         <div class="menu-item"><i class="icon-dashboard">🏠</i></div>
         <div class="menu-item"><i class="icon-profile">👤</i></div>
         <div class="menu-item"><i class="icon-settings">⚙️</i></div>
+        <div class="menu-item"><a href="leave_request.php"><i class="icon-leave-request">📅</i> Leave Request</a></div>
+        <div class="menu-item"><a href="leave_status.php"><i class="icon-leave-status">📋</i> Leave Status</a></div>
+        <div class="menu-item"><a href="admin_statistics.php"><i class="icon-statistics">📊</i> Admin Statistics</a></div>
         //add 4 more buttons set to direct to leave_request,leave_status,admin_statistics
         //add a display condition on admin statistics using js to ensure only HR and higher have this button available
         //comment the functions of your pages so people know which one to use for what 
@@ -88,7 +91,7 @@ $Objbalance->findBalance($emp_id, $leaveType);
          <form action="history.php">
         <div class="historical-data">
             <h3>Historical Data</h3>
-            <p>14 days</p>
+            <p>14 days</p><!-- sample days-->
             <button>View History</button>
         </div>
             </form>
