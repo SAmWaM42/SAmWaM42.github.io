@@ -1,7 +1,5 @@
-//YOU CAN SEARCH EMPLOYEE LEAVE RECORDS BY EMPLOYEE ID OR EMPLOYEE NAME
-
 <?php
-include 'database.php';
+include 'Database.php';
 
 try {
     // Establish a connection to the database using PDO

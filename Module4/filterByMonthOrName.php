@@ -1,7 +1,5 @@
-//FILTERS REQUEST BY MONTH AND/0R EMPLOYEE NAME
-
 <?php
-include 'database.php';
+include 'Database.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=timeoff", $username, $password);

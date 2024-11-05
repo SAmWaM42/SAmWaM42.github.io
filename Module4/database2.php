@@ -1,5 +1,3 @@
-// Purpose: Establishes a connection to the database
-
 <?php
 $servername = "localhost";
 $username = "root";
