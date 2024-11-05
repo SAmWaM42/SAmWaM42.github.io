@@ -4,7 +4,7 @@ session_start(); // Start the session
 // Check if the employee is logged in
 if (!isset($_SESSION['employee_id'])) {
     // If not logged in, redirect to login page
-    header("Location: login.php");
+    header("Location: login1.php");
     exit();
 }
 
