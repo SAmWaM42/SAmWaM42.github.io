@@ -148,7 +148,10 @@ class leavebalancetracking {
     }
 }
 
-require('load.php');
+//require_once 'C:\XAMPP\htdocs\SAmWaM42.github.io\DatabaseConnection\Database.php';
+//$ObjDb = new Database();
+//$pdo = $ObjDb->getConnection();
+require_once 'load.php';
 $pdo = $ObjDb->connection();
 $Objbalance = new leavebalancetracking($pdo);
 require ("retrieve.php");

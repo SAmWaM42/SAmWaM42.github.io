@@ -22,5 +22,23 @@ class Database {
 
         return $this->conn;
     }
+    public function connectPDO() {
+        $this->conn = null;
+
+        try {
+            $dsn ="mysql:host=" . $this->host. ";dbname=" . $this->dbname;
+            $options = [
+                PDO::ATTR-ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_PERSISTENT => true,
+
+            ];
+            $this ->conn = new PDO($dsn, $this->user, $this->pass, $options);
+
+        }catch(PDOException $e){
+            echo "PDO connection error: " .$e->getMessage(); 
+        }
+        return $this->conn;
+    }
 }
 ?>

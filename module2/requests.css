@@ -1,4 +1,8 @@
 /* General full-height layout */
+*{
+    font-family: 'kumbh Sans', sans-serif;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -8,7 +12,7 @@ html, body {
 
 header{
     display: flex;
-    background-color:#4c6444;
+    background-color:#32cd32;
     justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
@@ -18,6 +22,227 @@ header{
 header p{
     align-content: center;
 }
+
+/*.navs{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}*/
+
+/*Copied from module 1*/
+.navbar{
+    background: #32cd32;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar__container{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+#navbar__logo{
+    background-color: #32cd32;
+    background-image: linear-gradient(to top);
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.navpic{
+    margin-right: 0.5rem;
+
+}
+
+.navbar__menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+} 
+
+.navbar__item{
+    height: 80px;
+
+}
+
+.navbar__links{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.navbar__btn{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #32cd32;
+    color: #fff;
+
+}
+
+.button:hover{
+    background: black;
+    transition: all 0.3s ease;
+}
+
+.navbar__link:hover{
+    color: red;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 960px){
+    .navbar__container{
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        z-index: 1;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0;
+
+
+    }
+
+    .navbar__menu{
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: -1000px;
+        opacity: 0;
+        transition: all 0.5s ease;
+        height: 5ovh;
+        z-index: -1;
+        background: black;
+    }
+
+    .navbar__menu.active{
+        background: black;
+        top: 100%;
+        opacity:1;
+        transition: all 0.5s ease;
+        z-index: 99;
+        height: 50vh;
+        font-size: 1,6rem;
+
+
+    }
+
+    #navbar_logo{
+    padding-left: 25px;
+    margin: 1rem;
+    height: 4px;
+    width: 4px;
+    border-radius: 4px;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(17,17,17,0.6)100%), url('/Images/Timeoff[1].jpg');
+    background-size: cover;
+    position: relative;
+    color: #141414;
+
+    }
+    navbar__logo img {
+        width: 150px;  
+        height: auto;  
+    }
+
+    .navbar__toggle .bar{
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: #fff;
+
+    }
+
+    .navbar__item{
+        width: 100%;
+    }
+
+    .navbar__links{
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    #mobile-menu{
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%, 20%);
+    }
+
+    .navbar__btn{
+        padding-bottom: 2rem;
+
+    }
+
+    .button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 80px;
+        margin: 0;
+    }
+
+    .navbar__toggle .bar{
+        display: block;
+        cursor: pointer;
+
+    }
+
+    #mobile-menu.is-active .bar:nth-child(2){
+        opacity: 0;
+
+    }
+    #mobile-menu.is-active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+        
+    }
+    #mobile-menu.is-active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+        
+    }
+}
+/*End of Copy*/
 
 nav{
     height:60px;
@@ -42,7 +267,7 @@ nav{
 }
 
 nav ul li a:hover{
-    color:#4c6444;
+    color:#32cd32;
 }
 
 .tbl h1{
@@ -62,7 +287,8 @@ table{
 
 th{
     padding: 20px;
-    background-color: #746a5d;
+    background-color: #32cd32;
+    color: white;
 }
 
 td{
@@ -89,7 +315,7 @@ select{
     color:red;
 }
 footer{
-    background-color: #4c6444;
+    background-color: #32cd32;
     height: 30px;
     display: flex;
     justify-content: space-between;
@@ -98,6 +324,63 @@ footer{
     padding-right: 10px;
     padding-bottom: 5px;
 }
+
+/*Copied from Module 1*/
+.footer__container{
+    background-color: #fff;
+    padding: 10rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+}
+
+.footer__container h2{
+    font-size: x-large;
+    font-weight: bold
+}
+
+.footer__links{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+}
+.footer__link--wrapper{
+    display: flex;
+}
+.footer__link--items{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: 16px;
+    text-align: left;
+    width: 160px;
+    box-sizing: border-box;
+}
+
+.footer__link--items h2{
+    margin-bottom: 16px;
+}
+
+.footer__link--items > h2{
+
+    color: #141414;
+}
+
+.footer__link--items a{
+    color: #141414;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+}
+.footer__link--items a:hover{
+
+    color: #32cd32;
+    transition: 0.3s ease-out;
+}
+/*End of Copy*/
 
 /*
 * Flex container for the entire page 
