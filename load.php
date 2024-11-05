@@ -28,3 +28,4 @@ $conn=new conn();
 $flow=new flow();
 
 $conn->connection("localhost:3308","root","HomeEcide42","Easy_Leave");
+$conn->pdo_connection("localhost","3308","root","HomeEcide42","Easy_Leave");

@@ -1,20 +1,20 @@
 //hii ndio login yake since inahitaji session:
 <?php
 session_start();
-require_once 'DatabaseConnection/Database.php';
+require_once 'load.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Connect to the database
+    // connectionect to the database
     $database = new Database();
-    $conn = $database->getConnection();
+    $connection = $conn->get_pdo_connection();
 
     // Prepare and execute the query to find the employee by email
     $sql = "SELECT employee_id, password FROM Employees WHERE email = :email";
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
