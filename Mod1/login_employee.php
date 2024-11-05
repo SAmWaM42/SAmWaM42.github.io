@@ -1,6 +1,6 @@
 <?php
 // Include necessary classes
-require_once '../mod2/Database.php';
+require_once 'Login database.php';
 require_once 'User.php';
 
 // Initialize Database
@@ -11,12 +11,13 @@ $db = $database->connect();
 $user = new User($db);
 
 // Handle employee login
+$message = '';
 if (isset($_POST['login_employee'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $org_unique_id = $_POST['org_unique_id'];
 
-    $message = $user->loginEmployee($username, $password, $org_unique_id);
+    // Authenticate employee
+    $message = $user->loginEmployee($username, $password);
     echo $message;
 }
 ?>
@@ -38,7 +39,6 @@ if (isset($_POST['login_employee'])) {
         <form action="login_employee.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="org_unique_id" placeholder="Organization Unique ID" required>
             <input type="submit" name="login_employee" value="Login">
         </form>
     </div>

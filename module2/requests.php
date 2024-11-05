@@ -1,13 +1,13 @@
 <?php
-$severname = "localhost:3307";
-$username = "root";
-$password = "b@bad1ana";
-$dbname = "timeoff";
+// Purpose: The HR views the leave requests made by the employees and either accepts or rejects them. 
+// Before he/she does this, the default status of the leave request is pending.
+session_start();
 
-$conn = new mysqli($severname,$username,$password,$dbname);
+require_once('../load.php');
 
-if($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$connection=$conn->get_connection();
+if($connection->connect_error) {
+    die("$connection failed: " . $connection->connect_error);
 }
 
 if (isset($_POST['status']) && isset($_POST['id'])) {
@@ -15,11 +15,12 @@ if (isset($_POST['status']) && isset($_POST['id'])) {
     $id = $_POST['id'];
 
     $sql = "UPDATE leave_requests SET status='$status' WHERE id=$id";
-    $conn->query($sql);
+    $connection->execute_query($sql);
 }
+//add a select statement to the user table using the user id to get the name
 
 $sql = "SELECT id, name, period, type_of_leave, status FROM leave_requests";
-$result = $conn->query($sql);
+$result = $connection->execute_query($sql);
 
 ?>
 
@@ -100,7 +101,7 @@ $result = $conn->query($sql);
                     echo "<tr><td colspan='4'>No leave requests found</td></tr>";
                 }
 
-                $conn->close();
+                $connection->close();
                 ?>
             </tbody>
         </table>

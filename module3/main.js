@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const totalDays = 20;
-const daysTaken = 6;
+    const totalDays = 21;
+const daysTaken = 10;
 const daysRemaining = totalDays - daysTaken;
     const ctx = document.querySelector('.my_chart').getContext('2d');
 
@@ -41,6 +41,6 @@ const daysRemaining = totalDays - daysTaken;
     });
 
     // Update the details in the HTML
-    document.querySelector('.percentage:nth-of-type(1)').textContent = daysRemaining;
-    document.querySelector('.percentage:nth-of-type(2)').textContent = daysTaken;
+    document.querySelector('days Remaining').textContent = daysRemaining;
+    document.querySelector('daysTaken').textContent = daysTaken;
 });

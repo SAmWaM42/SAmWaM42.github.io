@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .login-container h2 {
-            color: ;
+            color:"white" ;
             text-align: center;
             margin-bottom: 2rem;
             font-size: 1.8rem;

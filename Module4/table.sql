@@ -1,5 +1,4 @@
-drop easy_leave;
-create database easy_leave;
+
 use easy_leave;
 create table leave_requests
 (

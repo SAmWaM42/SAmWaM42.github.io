@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Days Chart</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js" defer></script>
+    <script src="main2.js" defer></script>
+</head>
+<body>
+    <div class="all">
+<div class="Anual">
+    <h2 class="chart_heading">Leave Days</h2>
+    <div class="leave_stats">
+        <div class="chart_container">
+            <canvas class="my_chart" width="400" height="400" aria-label="Leave days Chart" role="img"></canvas>
+        </div>
+
+        <div class="details">
+            <ul>
+                <li>Days remaining: <span class="percentage"></span></li>
+                <li>Days taken: <span class="percentage"></span></li>
+            </ul>
+        </div>
+    </div>
+   
+</div>
+  
+    <div class="sick_stats">
+        <h2 class="chart_heading">Sick days</h2>
+        <div class="chart_container">
+            <canvas class="my_chart2" width="400" height="400" aria-label="Sick days Chart" role="img"></canvas>
+        </div>
+
+        <div class="details">
+            <ul>
+                <li>Sick Days remaining: <span class="percentage"></span></li>
+                <li>Sick Days taken: <span class="percentage"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
