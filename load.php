@@ -3,7 +3,7 @@
 //Class Auto Load
 function classAutoLoad($classname)
 {
-$directories=["connections","FLOW","INC"];
+$directories=["connections","FLOW","INC","module3"];
 foreach($directories as $dir)
 {
 $filename=dirname(__FILE__).DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$classname.".php";
@@ -26,5 +26,8 @@ spl_autoload_register('classAutoLoad');
 $includes=new inc();
 $conn=new conn();
 $flow=new flow();
+$Objlbt = new leavebalancetracking();
+$Objretrieve = new retrieve();
+
 
 $conn->connection("localhost:3308","root","HomeEcide42","Easy_Leave");
