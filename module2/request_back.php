@@ -1,8 +1,9 @@
 <?php
+//back end of request_form
 session_start();
 $_SESSION["ID"] = 1;
 $_SESSION["Worker_ID"] = 1;
-require_once "load.php";
+require_once "../load.php";
 var_dump($_POST);
 $status = 'pending';
 if ($_POST["leave_type"] == "Assigned") 
