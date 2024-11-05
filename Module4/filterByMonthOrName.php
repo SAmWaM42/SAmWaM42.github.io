@@ -1,13 +1,9 @@
 <?php
 include 'Database.php';
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=timeoff", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "CONNECTION FAILED: " . $e->getMessage();
-}
-// Retrieve filter values from POST request, defaulting to 0 for month and an empty string for employee name
+$database = new Database();
+$conn = $database->getConnection();
+
 $month = isset($_POST['month']) ? (int)$_POST['month'] : 0;
 $employee_name = isset($_POST['employee_name']) ? trim($_POST['employee_name']) : '';
 
@@ -34,7 +30,7 @@ try {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);// Fetch results as associative array
 
     // Query to count total leaves in as filtereed by month and employee name
-    $countSql = "SELECT COUNT(*) FROM leaverequests WHERE 1=1";
+    $countSql = "SELECT COUNT(*) FROM employeeleaves WHERE 1=1";
     if ($month > 0 && $month <= 12) {
         $countSql .= " AND month(start_date) = :month";
     }
