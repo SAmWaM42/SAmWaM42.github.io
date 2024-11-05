@@ -1,6 +1,7 @@
+
 <?php
 // Include database and leave request classes
-include_once 'DatabaseConnection/Database.php';
+include_once 'Database.php';
 include_once 'LeaveRequest.php';
 
 // Instantiate database and leave request

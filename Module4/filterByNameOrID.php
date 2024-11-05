@@ -1,5 +1,5 @@
 <?php
-include 'database.php';
+include 'Database.php';
 
 try {
     // Establish a connection to the database using PDO

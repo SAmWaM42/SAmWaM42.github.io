@@ -1,5 +1,5 @@
 <?php
-include 'database.php';
+include 'Database.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=timeoff", $username, $password);
