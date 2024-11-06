@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'DatabaseConnection/Database.php';
+require_once 'Database.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Store employee_id in session and redirect to leave history page
         $_SESSION['employee_id'] = $user['employee_id'];
         header("Location: Display3.php");
-        exit();
+     exit();
     } else {
         $error = "Invalid email or password.";
     }
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
 <?php endif; ?>
 
-<form method="POST" action="login.php">
+<form method="POST" action="login1.php">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
     <br><br>
