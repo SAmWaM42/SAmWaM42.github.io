@@ -9,12 +9,14 @@ class flow
                 <div>
                     <h2>Period Required</h2>
                     <div>
+                         <label for="start_date">Starts </label>
                         <input required type="date" name="start_date" id="start_date" >
-                        <label for="start_date">Starts </label>
+                       
                     </div>
                     <div>
-                        <input required type="date" name="end_date" id="end_date">
                         <label for="end_date">Ends </label>
+                        <input required type="date" name="end_date" id="end_date">
+                        
                     </div>
                 </div>
                 <div>

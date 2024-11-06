@@ -12,13 +12,13 @@ if ($_POST["leave_type"] == "Assigned")
     $values = [$_SESSION["Worker_ID"], $_POST["start_date"], $_POST["end_date"]];
     $conn->insert_data($statement, $values,false);
 
-    header("Location:SE/Dashboard.php");
+    header("Location:../module3/Dashboard.php");
 }
 else
 {
     $statement ='insert into special_requests(worker_ID,Type,start_date,end_date) values (?,?,?,?)';
     $values = [ $_SESSION["Worker_ID"], $_POST["special_type"],$_POST["start_date"], $_POST["end_date"]];
     $conn->insert_data($statement, $values,true);
-    header("Location:SE/Dashboard.php");
+    header("Location:../module3/Dashboard.php");
 }
 

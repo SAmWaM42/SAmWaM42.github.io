@@ -4,6 +4,6 @@ require_once "../load.php";
 $myConn=$conn->get_connection();
 $includes->header("Request");
 $includes->nav_bar();
-//$includes->inner_nav();
+$includes->inner_nav();
 $flow->form();
 $includes->footer();
