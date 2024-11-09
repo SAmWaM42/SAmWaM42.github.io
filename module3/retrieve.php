@@ -1,5 +1,5 @@
 <?php
-class Retrieve {
+class retrieve {
     private $pdo;
 
     public function __construct($pdo) {
