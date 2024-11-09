@@ -26,8 +26,8 @@ spl_autoload_register('classAutoLoad');
 $includes=new inc();
 $conn=new conn();
 $flow=new flow();
-$Objlbt = new leavebalancetracking();
-$Objretrieve = new retrieve();
+//$Objlbt = new leavebalancetracking();
+//$Objretrieve = new retrieve();
 
 
 $conn->connection("localhost:3308","root","HomeEcide42","Easy_Leave");
