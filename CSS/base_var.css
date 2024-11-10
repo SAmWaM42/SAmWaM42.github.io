@@ -152,7 +152,7 @@
     color: #141414;
 
     }
-    navbar__logo img {
+    #navbar__logo img {
         width: 150px;  
         height: auto;  
     }

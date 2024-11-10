@@ -3,14 +3,13 @@ include 'Database.php';
 
 try {
     // Establish a connection to the database using PDO
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    $database = new Database();
+    $conn = $database->getConnection(); 
     // Retrieve search term from GET request, if provided
     $search = isset($_GET['search']) ? $_GET['search'] : '';
 
     // Fetch all results initially
-    $sql = "SELECT employee_id, employee_name, leave_type, start_date, end_date FROM leaverequests";
+    $sql = "SELECT employee_id, employee_name, leave_type, start_date, end_date FROM  employeeleaves";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $allResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
