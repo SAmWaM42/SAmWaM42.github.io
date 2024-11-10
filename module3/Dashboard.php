@@ -1,13 +1,21 @@
 <?php
 // Include database connection and LeaveBalanceTracking class
-require_once('load.php'); // Assuming load.php initializes $pdo connection
+require_once('load.php');
+ // Assuming load.php initializes $pdo connection
+require_once('../load.php');
 require_once('leavebalancetracking.php');
 require_once('retrieve.php');
 
 $Objretrieve = new Retrieve($pdo);
 
 // Sample employee ID for display (replace with session variable or dynamic ID in a real app)
-$emp_id = 1; // Ideally, this should come from session or user input
+session_start();
+if (!isset($_SESSION['emp_id'])) {
+    // Redirect to login page if not logged in
+    header('Location: login.php');
+    exit();
+}
+$emp_id = $_SESSION['emp_id']; // Ideally, this should come from session or user input
 $leaveType = $Objretrieve ->getLeavetype($emp_id);
 
 // Fetch employee info

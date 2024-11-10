@@ -152,6 +152,7 @@ class leavebalancetracking {
 //$ObjDb = new Database();
 //$pdo = $ObjDb->getConnection();
 require_once 'load.php';
+
 $pdo = $ObjDb->connection();
 $Objbalance = new leavebalancetracking($pdo);
 require ("retrieve.php");
