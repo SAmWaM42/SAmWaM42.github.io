@@ -13,24 +13,33 @@ $organization = new Organization($db);
 $user = new User($db);
 
 // Fetch all organizations for the dropdown
-$orgQuery = "SELECT org_id, org_name FROM organizations";
+$orgQuery = "SELECT ID, name FROM organization";
 $orgResult = $db->query($orgQuery);
+
+// Fetch all roles for the dropdown
+$roleQuery = "SELECT ID, name FROM roles";
+$roleResult = $db->query($roleQuery);
 
 // Handle employee registration
 $message = '';
 if (isset($_POST['register_employee'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
-    $org_id = $_POST['org_id'];  // Get org_id from the dropdown
+    $confirm_password = $_POST['confirm_password'];
+    $org_id = $_POST['org_id'];
+    $role_id = $_POST['role_id'];
 
-    if (empty($username) || empty($password) || empty($org_id)) {
+    // Validate inputs
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id)) {
         $message = "All fields are required!";
+    } elseif ($password !== $confirm_password) {
+        $message = "Passwords do not match!";
     } else {
         // Hash the password for secure storage
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
+
         // Register the employee
-        $message = $user->registerEmployee($username, $hashed_password, $org_id);
+        $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id);
 
         // Redirect if successful
         if ($message === "Employee registered successfully.") {
@@ -58,10 +67,17 @@ if (isset($_POST['register_employee'])) {
         <form action="register_employee.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <select name="org_id" required>
                 <option value="">Select Organization</option>
                 <?php while ($org = $orgResult->fetch_assoc()): ?>
-                    <option value="<?php echo $org['org_id']; ?>"><?php echo htmlspecialchars($org['org_name']); ?></option>
+                    <option value="<?php echo $org['ID']; ?>"><?php echo htmlspecialchars($org['name']); ?></option>
+                <?php endwhile; ?>
+            </select>
+            <select name="role_id" required>
+                <option value="">Select Role</option>
+                <?php while ($role = $roleResult->fetch_assoc()): ?>
+                    <option value="<?php echo $role['ID']; ?>"><?php echo htmlspecialchars($role['name']); ?></option>
                 <?php endwhile; ?>
             </select>
             <input type="submit" name="register_employee" value="Register">
