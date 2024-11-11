@@ -27,5 +27,5 @@ $flow=new flow();
 //$Objretrieve = new retrieve();
 
 
-$conn->connection("localhost:3307","root","b@bad1ana","timeoff");
-$conn->pdo_connection("localhost","3307","root","b@bad1ana","timeoff");
+$conn->connection("localhost:3307","root","b@bad1ana","easy_leave");
+$conn->pdo_connection("localhost","3307","root","b@bad1ana","easy_leave");
