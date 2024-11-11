@@ -2,15 +2,15 @@
 class User {
     private $conn;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db_conn) {
+        $this->conn = $db_conn;
     }
 
     // Register employee
-    public function registerEmployee($name, $hashed_password, $org_id, $role_id, $gender_id) {
-        $query = "INSERT INTO employee (name, password, org_ID, role_ID, gender_id) VALUES (?, ?, ?, ?, ?)";
+    public function registerEmployee($username, $hashed_password, $org_id) {
+        $query = "INSERT INTO employee (name, password, org_ID) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssiii', $name, $hashed_password, $org_id, $role_id, $gender_id);
+        $stmt->bind_param('ssi', $username, $hashed_password, $org_id);
 
         if ($stmt->execute()) {
             return "Employee registered successfully.";
@@ -19,10 +19,8 @@ class User {
         }
     }
 
-    // Employee login
     public function loginEmployee($username, $password) {
-        $query = "SELECT e.ID, e.name, e.password, e.org_ID, e.Role, e.role_ID, 
-                         o.name AS org_name 
+        $query = "SELECT e.ID, e.name, e.password, e.org_ID, e.Role, e.role_ID, o.name AS org_name
                   FROM employee e
                   JOIN organization o ON e.org_ID = o.ID
                   WHERE e.name = ?";
@@ -36,7 +34,7 @@ class User {
 
             // Validate password
             if (password_verify($password, $user['password'])) {
-                return $user; // Authentication successful, return user data
+                return $user; // Return user data
             }
         }
 
