@@ -10,18 +10,40 @@ if($connection->connect_error) {
     die("$connection failed: " . $connection->connect_error);
 }
 
+// Handle status update from form submission
 if (isset($_POST['status']) && isset($_POST['id'])) {
     $status = $_POST['status'];
     $id = $_POST['id'];
 
-    $sql = "UPDATE leave_requests SET status='$status' WHERE id=$id";
-    $connection->execute_query($sql);
+    if (isset($_POST['status']) && isset($_POST['id'])) {
+        $status = $_POST['status'];
+        $id = $_POST['id'];
+    
+        if ($status === 'accepted' || $status === 'rejected') {
+            // Insert the approved/rejected request into `approved_requests` without specifying `id`
+            $insertSql = "INSERT INTO approved_requests (name, period, type_of_leave, status)
+                          SELECT name, period, type_of_leave, '$status'
+                          FROM leave_requests WHERE id=$id";
+            $connection->query($insertSql);
+        
+            // Delete the request from leave_requests table
+            $deleteSql = "DELETE FROM leave_requests WHERE id=$id";
+            $connection->query($deleteSql);
+            // Update the status in leave_requests to keep only pending entries
+            //$updateSql = "UPDATE leave_requests SET status='$status' WHERE id=$id";
+            //$conn->query($updateSql);
+        }
+    }
+    
 }
-//add a select statement to the user table using the user id to get the name
 
+// Retrieve pending leave requests
 $sql = "SELECT id, name, period, type_of_leave, status FROM leave_requests";
-$result = $connection->execute_query($sql);
+$result = $connection->query($sql);
 
+// Retrieve approved/rejected requests from approved_requests
+$sqlApprovedRejected = "SELECT name, period, type_of_leave, status FROM approved_requests";
+$resultApprovedRejected = $connection->query($sqlApprovedRejected);
 ?>
 
 <!DOCTYPE html>
@@ -119,6 +141,38 @@ $result = $connection->execute_query($sql);
                 ?>
             </tbody>
         </table>
+
+        <!-- Approved and Rejected Requests Table -->
+        <br>
+        <h1 style="font-size:x-large; font-weight:bold;">APPROVED AND REJECTED REQUESTS</h1>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>PERIOD</th>
+                    <th>TYPE</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                if ($resultApprovedRejected->num_rows > 0) {
+                    while ($row = $resultApprovedRejected->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['period'] . "</td>";
+                        echo "<td>" . $row['type_of_leave'] . "</td>";
+                        echo "<td>" . ucfirst($row['status']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No approved or rejected requests found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
         
     </main>
 
