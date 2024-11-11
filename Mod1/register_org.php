@@ -1,28 +1,26 @@
 <?php
-// Include necessary classes
-require_once 'Login database.php';
+require_once 'conn.php';
 require_once 'Organization.php';
 
 // Initialize Database
-$database = new Database();
-$db = $database->connect();
+$db_instance = new conn();
+$db_instance->connection('localhost', 'root', '', 'se');
+$db_conn = $db_instance->get_connection();
 
 // Initialize Organization class
-$organization = new Organization($db);
+$organization = new Organization($db_conn);
 
 // Handle organization registration
 $message = '';
 if (isset($_POST['register_org'])) {
     $org_name = $_POST['org_name'];
-    $org_unique_id = uniqid('ORG_');  // Auto-generate unique ID
+    $org_unique_id = uniqid('ORG_');
 
-    // Attempt to register the organization
-    if ($organization->registerOrganization($org_name, $org_unique_id)) {
-        // Redirect to register_employee.php after successful registration
-        header("Location: mod1/register_employee.php");
-        exit(); // Ensure no further code is executed after the redirect
-    } else {
-        $message = "Failed to register organization. Please try again.";
+    $message = $organization->registerOrganization($org_name, $org_unique_id);
+
+    if (strpos($message, "successfully") !== false) {
+        header("Location: register_employee.php");
+        exit();
     }
 }
 ?>
@@ -36,15 +34,15 @@ if (isset($_POST['register_org'])) {
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
 </head>
 <body>
-<div class="logo-container">
+    <div class="logo-container">
         <img src="Timeoff.jpg" alt="Company Logo" class="company-logo">
     </div>
     <div class="form-container">
         <h2>Register Organization</h2>
-        <?php if ($message): ?>
+        <?php if (!empty($message)): ?>
             <p class="error-message"><?php echo $message; ?></p>
         <?php endif; ?>
-        <form action="" method="POST">
+        <form action="register_organization.php" method="POST">
             <input type="text" name="org_name" placeholder="Organization Name" required>
             <input type="submit" name="register_org" value="Register">
         </form>
