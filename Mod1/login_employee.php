@@ -3,7 +3,7 @@ require_once 'conn.php';
 require_once 'User.php';
 
 $db_instance = new conn();
-$db_instance->connection('localhost', 'root', 'password', 'your_database_name');
+$db_instance->connection('localhost', 'root', '', 'se');
 $db_conn = $db_instance->get_connection();
 
 $user = new User($db_conn);
@@ -18,7 +18,7 @@ if (isset($_POST['login_employee'])) {
     if ($result) {
         session_start();
         $_SESSION['username'] = $result['name'];
-        $_SESSION['user_id'] = $result['ID'];
+        $_SESSION['user_id'] = $result['ID'];s
         $_SESSION['org_name'] = $result['org_name'];
 
         header("Location: module3/dashboard.php");
