@@ -1,32 +1,26 @@
 <?php
-// Include necessary classes
-require_once 'Database.php';
+require_once 'conn.php';
 require_once 'Organization.php';
 
 // Initialize Database
-$database = new Database();
-$db = $database->connect();
+$db_instance = new conn();
+$db_instance->connection('localhost', 'root', 'password', 'your_database_name');
+$db_conn = $db_instance->get_connection();
 
 // Initialize Organization class
-$organization = new Organization($db);
+$organization = new Organization($db_conn);
 
 // Handle organization registration
 $message = '';
 if (isset($_POST['register_org'])) {
-    $org_name = trim($_POST['org_name']);
+    $org_name = $_POST['org_name'];
+    $org_unique_id = uniqid('ORG_');
 
-    // Validate input
-    if (empty($org_name)) {
-        $message = "Organization name is required!";
-    } else {
-        // Attempt to register the organization
-        if ($organization->registerOrganization($org_name)) {
-            // Redirect to register_employee.php after successful registration
-            header("Location: mod1/register_employee.php");
-            exit(); // Ensure no further code is executed after the redirect
-        } else {
-            $message = "Failed to register organization. Please try again.";
-        }
+    $message = $organization->registerOrganization($org_name, $org_unique_id);
+
+    if (strpos($message, "successfully") !== false) {
+        header("Location: register_employee.php");
+        exit();
     }
 }
 ?>
