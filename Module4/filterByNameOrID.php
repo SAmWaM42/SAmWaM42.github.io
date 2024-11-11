@@ -1,5 +1,8 @@
 <?php
-include 'load.php';
+include '../load.php';
+
+
+$connection = $conn->get_pdo_connection();
 
 function getConnection() {
     try {
