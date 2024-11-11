@@ -68,7 +68,7 @@ class inc
     }
     public function inner_nav()
     {
-        /* ?>
+        ?>
 
              <div class="inner_nav">
 
@@ -94,10 +94,10 @@ class inc
              </div>
 
              <?php
-             */
+             
 
 
-
+/*
         ?>
             <div class="dashboard">
                 <!-- Sidebar Menu -->
@@ -112,7 +112,7 @@ class inc
                     //special conditions do not subtract
                 </div>
 
-                <?php
+                  <?php */  
 
 
 

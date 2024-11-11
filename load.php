@@ -19,11 +19,8 @@ $filename=dirname(__FILE__).DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$classn
 }
 
 }
-
 spl_autoload_register('classAutoLoad');
 
-
-$includes=new inc();
 $conn=new conn();
 $flow=new flow();
 //$Objlbt = new leavebalancetracking();

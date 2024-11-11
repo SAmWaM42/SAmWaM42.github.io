@@ -11,11 +11,19 @@ $db = $database->connect();
 $organization = new Organization($db);
 
 // Handle organization registration
+$message = '';
 if (isset($_POST['register_org'])) {
     $org_name = $_POST['org_name'];
     $org_unique_id = uniqid('ORG_');  // Auto-generate unique ID
-    $message = $organization->registerOrganization($org_name, $org_unique_id);
-    echo $message;
+
+    // Attempt to register the organization
+    if ($organization->registerOrganization($org_name, $org_unique_id)) {
+        // Redirect to register_employee.php after successful registration
+        header("Location: mod1/register_employee.php");
+        exit(); // Ensure no further code is executed after the redirect
+    } else {
+        $message = "Failed to register organization. Please try again.";
+    }
 }
 ?>
 
@@ -33,6 +41,9 @@ if (isset($_POST['register_org'])) {
     </div>
     <div class="form-container">
         <h2>Register Organization</h2>
+        <?php if ($message): ?>
+            <p class="error-message"><?php echo $message; ?></p>
+        <?php endif; ?>
         <form action="" method="POST">
             <input type="text" name="org_name" placeholder="Organization Name" required>
             <input type="submit" name="register_org" value="Register">

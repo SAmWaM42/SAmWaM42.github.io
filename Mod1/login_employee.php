@@ -1,4 +1,7 @@
 <?php
+// Start session at the beginning of the script
+session_start();
+
 // Include necessary classes
 require_once 'Login database.php';
 require_once 'User.php';
@@ -17,8 +20,19 @@ if (isset($_POST['login_employee'])) {
     $password = $_POST['password'];
 
     // Authenticate employee
-    $message = $user->loginEmployee($username, $password);
-    echo $message;
+    $result = $user->loginEmployee($username, $password);
+
+    if ($result) {
+        // Set session variables
+        $_SESSION['username'] = $username;
+        $_SESSION['user_id'] = $result; // Assuming $result returns the user ID
+
+        // Redirect to dashboard.php in the module3 folder
+        header("Location: module3/dashboard.php");
+        exit();
+    } else {
+        $message = "Invalid username or password";
+    }
 }
 ?>
 
@@ -36,6 +50,9 @@ if (isset($_POST['login_employee'])) {
     </div>
     <div class="form-container">
         <h2>Login Employee</h2>
+        <?php if ($message): ?>
+            <p class="error-message"><?php echo $message; ?></p>
+        <?php endif; ?>
         <form action="login_employee.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
