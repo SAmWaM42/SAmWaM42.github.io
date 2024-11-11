@@ -1,6 +1,5 @@
 <?php
 // Include database connection and LeaveBalanceTracking class
-require_once('load.php');
  // Assuming load.php initializes $pdo connection
 require_once('../load.php');
 require_once('leavebalancetracking.php');

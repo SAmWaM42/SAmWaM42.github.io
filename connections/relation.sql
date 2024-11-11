@@ -12,16 +12,24 @@ CREATE TABLE organization (
     ID  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(60) NOT NULL
 );
+create table roles
+(
+    name varchar(45);
+    ID int primary key;
+);
 CREATE TABLE employee (
     name VARCHAR(60) NOT NULL,
     gender_id INT NOT NULL DEFAULT 0,
     ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     org_ID INT NOT NULL,
+    role_ID int not null,
     Role VARCHAR(45) DEFAULT 'secretary',
     CONSTRAINT FOREIGN KEY (org_ID)
         REFERENCES organization (ID),
     CONSTRAINT FOREIGN KEY (gender_id)
-        REFERENCES gender (ID)
+        REFERENCES gender (ID),
+        CONSTRAINT FOREIGN KEY(role_ID) REFERENCES roles(ID)
+
 );
 
 CREATE TABLE leave_requests (
@@ -44,6 +52,7 @@ CREATE TABLE leave_record (
     CONSTRAINT FOREIGN KEY (employee_ID)
         REFERENCES employee (ID)
 );
+
 
 
 
