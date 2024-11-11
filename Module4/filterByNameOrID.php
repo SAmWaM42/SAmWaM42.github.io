@@ -1,5 +1,5 @@
 <?php
-include 'load.php';
+include '../load.php';
 
 $database = new Database();
 $conn = $database->getConnection();
