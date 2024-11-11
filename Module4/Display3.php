@@ -5,10 +5,11 @@ session_start();
 //     exit();
 // }
 
-require_once 'conn.php';
-$database = new conn();
-// $database->pdo_connection('your_host', 'your_port', 'your_user', 'your_password', 'your_database');
-$conn = $database->get_pdo_connection();
+require_once '../load.php';
+
+// $database->pdo_connectionection('your_host', 'your_port', 'your_user', 'your_password', 'your_database');
+$connection = $conn->get_pdo_connection();
+
 $employee_id = $_SESSION['employee_ID'];
 
 
@@ -42,7 +43,7 @@ $employee_id = $_SESSION['employee_ID'];
 
 
 
-$stmt = $conn->prepare($sql);
+$stmt = $connection->prepare($sql);
 $stmt->bindParam(':employee_ID', $employee_id, PDO::PARAM_INT);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

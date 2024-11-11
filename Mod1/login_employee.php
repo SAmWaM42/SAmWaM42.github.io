@@ -18,7 +18,7 @@ if (isset($_POST['login_employee'])) {
     if ($result) {
         session_start();
         $_SESSION['username'] = $result['name'];
-        $_SESSION['user_id'] = $result['ID'];s
+        $_SESSION['user_id'] = $result['ID'];
         $_SESSION['org_name'] = $result['org_name'];
 
         header("Location: module3/dashboard.php");
