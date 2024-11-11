@@ -2,36 +2,19 @@
 class Organization {
     private $conn;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db_conn) {
+        $this->conn = $db_conn;
     }
 
-    // Register an organization
-    public function registerOrganization($org_name) {
-        $query = "INSERT INTO organization (name) VALUES (?)";
+    public function registerOrganization($org_name, $org_unique_id) {
+        $query = "INSERT INTO organization (name, unique_id) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('s', $org_name);
+        $stmt->bind_param('ss', $org_name, $org_unique_id);
 
         if ($stmt->execute()) {
-            return "Organization registered successfully! Organization Name: " . $org_name;
+            return "Organization registered successfully! Your Organization ID is: " . $org_unique_id;
         } else {
             return "Error: " . $this->conn->error;
-        }
-    }
-
-    // Fetch all organizations
-    public function getOrganizations() {
-        $query = "SELECT ID, name FROM organization";
-        $result = $this->conn->query($query);
-
-        if ($result->num_rows > 0) {
-            $organizations = [];
-            while ($row = $result->fetch_assoc()) {
-                $organizations[] = $row;
-            }
-            return $organizations;
-        } else {
-            return [];
         }
     }
 }
