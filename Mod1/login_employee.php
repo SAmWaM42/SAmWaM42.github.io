@@ -25,7 +25,9 @@ if (isset($_POST['login_employee'])) {
     if ($result) {
         // Set session variables
         $_SESSION['username'] = $username;
-        $_SESSION['user_id'] = $result; // Assuming $result returns the user ID
+        $_SESSION['user_id'] = $result['ID']; // Assuming $result returns an array with user data
+        $_SESSION['org_id'] = $result['org_ID']; // Store organization ID
+        $_SESSION['role'] = $result['Role']; // Store role
 
         // Redirect to dashboard.php in the module3 folder
         header("Location: module3/dashboard.php");
