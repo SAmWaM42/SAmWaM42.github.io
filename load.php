@@ -28,13 +28,9 @@ $conn->pdo_connection("localhost","3308","root","HomeEcide42","Easy_Leave");
 $includes=new inc();
 $conn=new conn();
 $flow=new flow();
-<<<<<<< HEAD
-$Objlbt = new leavebalancetracking($pdo);
-//$Objretrieve = new retrieve($pdo);
-=======
 $Objlbt = new leavebalancetracking($conn->get_pdo_connection());
 $Objretrieve = new retrieve($conn->get_pdo_connection());
->>>>>>> 0b09557a1946ab3d8ec74744962824978c404df9
+
 
 
 

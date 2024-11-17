@@ -7,7 +7,7 @@ class retrieve {
     }
 
     public function getEmployeeInfo($emp_id) {
-        $sql = "SELECT emp_name FROM employess WHERE emp_id = ?";
+        $sql = "SELECT name FROM employee WHERE ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$emp_id]);
         
@@ -37,14 +37,14 @@ class retrieve {
 
     // Fetch leave requests for the employee
     public function getLeaveRequests($emp_id) {
-        $sql = "SELECT leave_type, status FROM requests WHERE emp_id = ?";
+        $sql = "SELECT leave_type, status FROM leave_requests WHERE employee_ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$emp_id]);
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Will return an empty array if no requests found
     }
     public function getLeavetype($emp_id){
-        $sql = "SELECT leave_type FROM requests WHERE emp_id = ?";
+        $sql = "SELECT type FROM leave_requests WHERE employee_ID = ?";
         $stmt = $this ->pdo ->prepare($sql);
         $stmt->execute([$emp_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

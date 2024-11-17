@@ -44,6 +44,16 @@ CREATE TABLE leave_record (
     CONSTRAINT FOREIGN KEY (employee_ID)
         REFERENCES employee (ID)
 );
+CREATE TABLE leave_balance (
+    emp_id INT NOT NULL PRIMARY KEY,
+    annual_leave_balance INT DEFAULT 0,
+    sick_leave_balance INT DEFAULT 0,
+    maternity_leave_balance INT DEFAULT 0,
+    last_accrual_date DATE NOT NULL,
+    CONSTRAINT FOREIGN KEY (emp_id)
+        REFERENCES employee (ID)
+);
+ /*I have created this table as the module requires somwehere for the balances to be stored*/
 
 
 
