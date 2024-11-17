@@ -5,27 +5,46 @@ session_start();
 //     exit();
 // }
 
-require_once 'Database.php';
-$database = new Database();
-$conn = $database->getConnection();
-$employee_id =19;
+require_once '../load.php';
 
-$sql = "
+// $database->pdo_connectionection('your_host', 'your_port', 'your_user', 'your_password', 'your_database');
+$connection = $conn->get_pdo_connection();
+
+$employee_id = $_SESSION['employee_ID'];
+
+
+    // SELECT 
+    //     type,
+    //     start_date,
+    //     end_date,
+    //     CASE WHEN status = 1 THEN 'Approved' ELSE 'Pending' END AS approval_status
+    // FROM 
+    //     leave_record
+    // WHERE 
+    //     employee_ID = :employee_ID
+    // ORDER BY 
+    //     start_date DESC
+    $sql = "
     SELECT 
-        leave_type,
+        type,
         start_date,
         end_date,
-        CASE WHEN approval_status = 1 THEN 'Approved' ELSE 'Pending' END AS approval_status
+        CASE 
+            WHEN status = 'Accepted' THEN 'Approved' 
+            ELSE 'Pending' 
+        END AS status
     FROM 
-        employeeleaves
+        leave_record
     WHERE 
-        employee_id = :employee_id
+        employee_ID = :employee_ID
     ORDER BY 
         start_date DESC
 ";
 
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':employee_id', $employee_id, PDO::PARAM_INT);
+
+
+$stmt = $connection->prepare($sql);
+$stmt->bindParam(':employee_ID', $employee_id, PDO::PARAM_INT);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -106,12 +125,12 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-200">
-                                            <?php echo htmlspecialchars($row['leave_type']); ?>
+                                            <?php echo htmlspecialchars($row['type']); ?>
                                         </span>
                                     </td>
                                     <td class="px-6 py-4"><?php echo htmlspecialchars($row['start_date']); ?></td>
                                     <td class="px-6 py-4"><?php echo htmlspecialchars($row['end_date']); ?></td>
-                                    <td class="px-6 py-4"><?php echo htmlspecialchars($row['approval_status']); ?></td>
+                                    <td class="px-6 py-4"><?php echo htmlspecialchars($row['status']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
