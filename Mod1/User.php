@@ -8,9 +8,10 @@ class User {
 
     // Register employee
     public function registerEmployee($username, $hashed_password, $org_id, $gender_id) {
-        $query = "INSERT INTO employee (name, password, org_ID, gender_id) VALUES (?, ?, ?,  ?)";
+     
+        $query = "INSERT INTO employee (name, password, org_ID, gender_ID) VALUES (?, ?, ?,?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssii', $username, $hashed_password, $org_id, $gender_id);
+        $stmt->bind_param('sssi', $username, $hashed_password, $org_id, $gender_id);
 
         echo $org_id;
 
@@ -21,9 +22,10 @@ class User {
         }
     }
     public function registerAdmin($username, $hashed_password, $org_id,$role_ID,$gender_id) {
-        $query = "INSERT INTO employee (name, password, org_ID, role_ID, gender_id) VALUES (?, ?, ?, ?, ?)";
+      
+        $query = "INSERT INTO employee (name,password,org_ID,role_ID,gender_ID) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('sssii', $username, $hashed_password, $org_id, $role_ID, $gender_id);
+        $stmt->bind_param('sssii', $username,$hashed_password,$org_id,$role_ID,$gender_id);
 
         if ($stmt->execute()) {
             return "Employee registered successfully.";
@@ -34,7 +36,7 @@ class User {
 
 
     public function loginEmployee($username, $password) {
-        $query = "SELECT e.ID, e.name, e.password, e.org_ID, e.Role, e.role_ID, e.gender_id, o.name AS org_name
+        $query = "SELECT e.ID, e.name, e.password, e.org_ID,e.role_ID, e.gender_id, o.name AS org_name
                   FROM employee e
                   JOIN organization o ON e.org_ID = o.ID
                   WHERE e.name = ?";

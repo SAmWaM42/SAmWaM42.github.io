@@ -22,14 +22,19 @@ $genderResult = $db_conn->query($genderQuery);
 
 // Handle employee registration
 $message = '';
-if (isset($_POST['register_employee'])) {
+if (isset($_POST['register_employee']))
+ {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     $org_id = $_POST['org_id'];
     $gender_id = $_POST['gender_id'];
 
-    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id) || empty($gender_id)) {
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || $gender_id="")
+     {
+        
+
+        
         $message = "All fields are required!";
     } elseif ($password !== $confirm_password) {
         $message = "Passwords do not match!";
@@ -41,7 +46,7 @@ if (isset($_POST['register_employee'])) {
                 header("Location:login_employee.php");
                 exit();
             }
-        } else {
+         else {
             // Invalid gender_id, return an error message
             $message = "Invalid gender selected.";
         }
@@ -82,7 +87,8 @@ if (isset($_POST['register_employee'])) {
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <select name="org_id" required>
                 <option value="">Select Organization</option>
-                <?php while ($org = $orgResult->fetch_assoc()): ?>
+                <?php while ($org = $orgResult->fetch_assoc()): 
+                    ?>
                     <option value="<?php echo $org['ID']; ?>"><?php echo htmlspecialchars($org['name']); ?></option>
                 <?php endwhile; ?>
             </select>
@@ -93,6 +99,7 @@ if (isset($_POST['register_employee'])) {
                     <option value="<?php echo $gender['ID']; ?>"><?php echo htmlspecialchars($gender['name']); ?></option>
                 <?php endwhile; ?>
             </select>
+
             <input type="submit" name="register_employee" value="Register">
         </form>
         <?php if (!empty($message)): ?>
