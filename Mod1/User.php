@@ -8,7 +8,7 @@ class User {
 
     // Register employee
     public function registerEmployee($username, $hashed_password, $org_id) {
-        $query = "INSERT INTO employee (name, password, org_ID) VALUES (?, ?, ?)";
+        $query = "INSERT INTO employees (name, password, org_ID) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ssi', $username, $hashed_password, $org_id);
 
@@ -21,7 +21,7 @@ class User {
 
     public function loginEmployee($username, $password) {
         $query = "SELECT e.ID, e.name, e.password, e.org_ID, e.Role, e.role_ID, o.name AS org_name
-                  FROM employee e
+                  FROM employees e
                   JOIN organization o ON e.org_ID = o.ID
                   WHERE e.name = ?";
         $stmt = $this->conn->prepare($query);
