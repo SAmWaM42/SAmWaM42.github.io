@@ -85,7 +85,7 @@ $title = 'Filter By Month or Name';
     
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-            <h2 class="text-xl font-semibold mb-6">Filter Leave Records by Month and Name</h2>
+            <h2 style="color:black;" class="text-xl font-semibold mb-6">Filter Leave Records by Month and Name</h2>
             <!-- Filter Form -->
             <form method="POST" class="mb-6 flex items-center space-x-4">
                 <div>

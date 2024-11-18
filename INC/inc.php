@@ -105,7 +105,7 @@ class inc
                     if($title =="Filter By Name or ID" )
                     {
                         ?>
-                        <a href="filterByMonthOrName.php" >
+                        <a href="filterByMonthOrName.php">
                         <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
                          </a>
                          <?php
