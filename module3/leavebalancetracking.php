@@ -76,7 +76,7 @@ class leavebalancetracking {
     
             // Loop through each leave type and find balances
             foreach ($leaveTypes as $leaveTypeData) {
-                $leaveType = $leaveTypeData['leave_type'];
+                $leaveType = $leaveTypeData['type'];
     
                 // Fetch leave request status and days taken from requests
                 $sql = "SELECT status, DATEDIFF(end_date,start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";

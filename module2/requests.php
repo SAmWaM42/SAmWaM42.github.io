@@ -20,6 +20,7 @@ if (isset($_POST['status']) && isset($_POST['id'])) {
         $insertSql = "INSERT INTO leave_record (employee_ID, start_date, end_date, type, status)
                       SELECT employee_ID, start_date, end_date, type, '$status'
                       FROM leave_requests WHERE ID = $id";
+                      
         $connection->query($insertSql);
 
         // Delete the request from leave_requests table
@@ -43,6 +44,7 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="requests.css">
 </head>

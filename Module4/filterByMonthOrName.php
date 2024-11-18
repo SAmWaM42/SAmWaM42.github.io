@@ -57,6 +57,7 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+$title = 'Filter By Month or Name';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +66,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Leave Summary</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../CSS/style.css">
     <style>
          main{
             width: 90%;
@@ -75,81 +77,15 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
-    <nav class="navbar">
-    <div class="navbar__container">
-        <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
-        <div class="navbar__toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="navbar__menu">
-            <li class="navbar__item">
-                <a href="/" class="navbar__links">
-                    Home
-                </a>
-            </li>
-            <li class="navbar__item">
-                <a href="/" class="navbar__links">
-                    About
-                </a>
-            </li>
-            <li class="navbar__btn">
-                <a href="login_employee.php" class="button">
-                    Login
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-    <nav class="navbar">
-    <div class="navbar__container">
-        <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
-        <div class="navbar__toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="navbar__menu">
-            <li class="navbar__item">
-                <a href="/" class="navbar__links">
-                    Home
-                </a>
-            </li>
-            <li class="navbar__item">
-                <a href="/" class="navbar__links">
-                    About
-                </a>
-            </li>
-            <li class="navbar__btn">
-                <a href="login_employee.php" class="button">
-                    Login
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-    <nav class="bg-green-500 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3">
-                    <img src="Mod1\Timeoff.jpg" alt="TimeOff Logo" class="w-10 h-10">
-                    <span class="text-white text-2xl font-semibold">TimeOff</span>
-                </div>
-                <div class="flex space-x-4">
-                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByNameOrID.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
-                        Search Employee Leave Records
-                    </a>
-                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthOrName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
-                        View Monthly Leave Summary
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<?php
+    
+    $includes->nav_bar();
+    $includes->inner_nav("Filter By Month or Name");
+    ?>
+    
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-            <h2 class="text-xl font-semibold mb-6">Filter Leave Records by Month and Name</h2>
+            <h2 style="color:black;" class="text-xl font-semibold mb-6">Filter Leave Records by Month and Name</h2>
             <!-- Filter Form -->
             <form method="POST" class="mb-6 flex items-center space-x-4">
                 <div>
