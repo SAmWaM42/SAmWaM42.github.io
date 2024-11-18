@@ -75,18 +75,21 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
+    <?php>
+    $includes->navBar();
+    $includes->innerNavBar();
+    ?>
     <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <img src="Timeoff[1].jpg" alt="TimeOff Logo" class="w-10 h-10">
                     <span class="text-white text-2xl font-semibold">TimeOff</span>
                 </div>
                 <div class="flex space-x-4">
                     <a style="background-color:white;color:green;border-radius:10px;" href="filterByNameOrID.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         Search Employee Leave Records
                     </a>
-                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthAndName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
+                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthOrName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         View Monthly Leave Summary
                     </a>
                 </div>

@@ -69,7 +69,22 @@ class inc
     public function inner_nav()
     {
         ?>
-
+      
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <div class="menu-item"><i class="icon-dashboard">🏠</i></div>
+        <div class="menu-item"><i class="icon-profile">👤</i></div>
+        <div class="menu-item"><i class="icon-settings">⚙️</i></div>
+        <div class="menu-item"><a href="../module2/requests.php"><i class="icon-leave-request">📅</i></a></div>
+        <div class="menu-item"><a href="../leave_status.php"><i class="icon-leave-status">📋</i> </a></div>
+        <div class="menu-item"><a href="../admin_statistics.php"><i class="icon-statistics">📊</i> </a></div>
+        <!---//add 4 more buttons set to direct to leave_request,leave_status,admin_statistics
+        //add a display condition on admin statistics using js to ensure only HR and higher have this button available
+        //comment the functions of your pages so people know which one to use for what 
+        //special conditions do not subtract--->
+    </div>
+ <?php
+/*
              <div class="inner_nav">
 
                  <a href="">
@@ -93,11 +108,10 @@ class inc
 
              </div>
 
-             <?php
+            
              
 
 
-/*
         ?>
             <div class="dashboard">
                 <!-- Sidebar Menu -->
@@ -111,9 +125,8 @@ class inc
                     //comment the functions of your pages so people know which one to use for what
                     //special conditions do not subtract
                 </div>
-
-                  <?php */  
-
+*/
+               
 
 
     }
