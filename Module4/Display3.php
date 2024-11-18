@@ -56,7 +56,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave History</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="../Mod1/stylee.css">
+    <link rel="stylesheet" href="../CSS/style.css">
     <style>
 
         main {
