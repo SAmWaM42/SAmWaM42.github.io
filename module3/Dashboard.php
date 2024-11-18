@@ -4,6 +4,7 @@
 require_once('../load.php');
 require_once('leavebalancetracking.php');
 require_once('retrieve.php');
+
 $pdo=$conn->get_pdo_connection();
 
 $Objretrieve = new Retrieve($pdo);
@@ -38,11 +39,15 @@ $Objbalance->findBalance($user_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Balance Dashboard</title>
     <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="../stylee.css">
 </head>
 <body>
+    <?php 
+        $includes ->nav_bar();
+        $includes ->inner_nav();
+        ?>
 
-<div class="dashboard">
-    <!-- Sidebar Menu -->
+<!---
     <div class="sidebar">
         <div class="menu-item"><i class="icon-dashboard">🏠</i></div>
         <div class="menu-item"><i class="icon-profile">👤</i></div>
@@ -50,11 +55,11 @@ $Objbalance->findBalance($user_id);
         <div class="menu-item"><a href="../module2/requests.php"><i class="icon-leave-request">📅</i></a></div>
         <div class="menu-item"><a href="../leave_status.php"><i class="icon-leave-status">📋</i> </a></div>
         <div class="menu-item"><a href="../admin_statistics.php"><i class="icon-statistics">📊</i> </a></div>
-        <!---//add 4 more buttons set to direct to leave_request,leave_status,admin_statistics
+        -//add 4 more buttons set to direct to leave_request,leave_status,admin_statistics
         //add a display condition on admin statistics using js to ensure only HR and higher have this button available
         //comment the functions of your pages so people know which one to use for what 
-        //special conditions do not subtract--->
-    </div>
+        //special conditions do not subtract
+    </div>-->
 
     <!-- Main Content Area -->
     <div class="main-content">

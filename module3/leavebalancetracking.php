@@ -99,6 +99,12 @@ class leavebalancetracking {
                         case 'maternity':
                             $balanceColumn = 'maternity_leave_balance';
                             break;
+                        case 'paternity':
+                            $balanceColumn = 'paternity_leave_balance';
+                            break;
+                        case 'compassionate':
+                            $balanceColumn = 'compassionate_leave_balance';
+                            break;
                         default:
                             echo "Invalid leave type.";
                             return;
