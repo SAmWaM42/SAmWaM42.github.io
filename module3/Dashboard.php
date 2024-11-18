@@ -44,7 +44,7 @@ $Objbalance->findBalance($user_id);
 <body>
     <?php 
         $includes ->nav_bar();
-        $includes ->inner_nav();
+        $includes ->inner_nav("matter");
         ?>
 
 <!---

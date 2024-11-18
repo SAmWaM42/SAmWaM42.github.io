@@ -1,10 +1,24 @@
 <?php
-class retrieve {
+session_start();
+require_once "../load.php";
+class history {
     private $pdo;
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
+    public function getTypes($emp_id){
+    $sql = "SELECT e.name, lb.annual_leave_balance, lb.sick_leave_balance, lb.maternity_leave_balance
+        FROM employee e
+        JOIN leave_balance lb ON e.ID = lb.emp_id
+        WHERE e.ID = ?";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result;
+}
 
     public function getEmployeeInfo($emp_id) {
         $sql = "SELECT name FROM employee WHERE ID = ?";
@@ -49,11 +63,11 @@ class retrieve {
         $stmt->execute([$emp_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getTotalDaysTaken($emp_id, $leaveType) {
-        $sql = "SELECT DATEDIFF(end_date, start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
+    public function getTotalDaysTaken($emp_id) {
+        $sql = "SELECT DATEDIFF(end_date, start_date) AS days_taken FROM leave_record WHERE employee_ID = ? ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
-        $stmt->bindParam(2, $leaveType, PDO::PARAM_STR);
+
         $stmt->execute();
     
         // Fetch all the records
@@ -95,11 +109,30 @@ class retrieve {
     
     
 }
-    $daysAvailable = $this->getDaysAvailable(); // Fetch available leave days
+$his=new history($conn->get_pdo_connection());
+    $daysAvailable = $his->getDaysAvailable(); // Fetch available leave days
 
 // Get the total days taken (example for 'Annual Leave')
      // You can dynamically set this value
-    $daysTaken = $this->getTotalDaysTaken($emp_id, $leaveType);
+    $daysTaken = $his->getTotalDaysTaken(
+        
+        $_SESSION["user_id"]
+    );
+ $Objlbt->assignBalance();
+   $result=$his->getTypes($_SESSION["user_id"]);
+   if ($result) {
+    $employeeName = $result['name'];
+    $leaveBalances = [
+        'Annual Leave' => $result['annual_leave_balance'],
+        'Sick Leave' => $result['sick_leave_balance'],
+        'Maternity Leave' => $result['maternity_leave_balance']
+    ];
+} else {
+    // Handle case where employee is not found
+    echo "Employee not found.";
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,6 +140,7 @@ class retrieve {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Days Chart</title>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -186,10 +220,14 @@ class retrieve {
             <canvas class="my_chart2" width="400" height="400" aria-label=" Type of leave" role="img"></canvas>
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
+                    
+                    var employeeName = "<?php echo htmlspecialchars($employeeName); ?>";
                     var leaveBalances = <?php echo json_encode(array_values($leaveBalances)); ?>; // Get values only for chart
                     var leaveTypes = <?php echo json_encode(array_keys($leaveBalances)); ?>; // Get keys for labels
 
     // Create the pie chart
+    const ctx = document.getElementById('leaveChart').getContext('2d');
+    
     const myChart = new Chart(ctx, {
         type: 'pie',
         data: {

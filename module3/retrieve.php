@@ -5,6 +5,7 @@ class retrieve {
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
+    
 
     public function getEmployeeInfo($emp_id) {
         $sql = "SELECT name FROM employee WHERE ID = ?";
