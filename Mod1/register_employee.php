@@ -14,18 +14,26 @@ $user = new User($db_conn);
 $orgQuery = "SELECT ID, name FROM organization";
 $orgResult = $db_conn->query($orgQuery);
 
+// Fetch all roles
+$roleQuery = "SELECT ID, name FROM roles";
+$roleResult = $db_conn->query($roleQuery);
+
 // Handle employee registration
 $message = '';
 if (isset($_POST['register_employee'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     $org_id = $_POST['org_id'];
+    $role_id = $_POST['role_id'];
 
-    if (empty($username) || empty($password) || empty($org_id)) {
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id)) {
         $message = "All fields are required!";
+    } elseif ($password !== $confirm_password) {
+        $message = "Passwords do not match!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $message = $user->registerEmployee($username, $hashed_password, $org_id);
+        $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id);
 
         if ($message === "Employee registered successfully.") {
             header("Location: Mod1/login_employee.php");
