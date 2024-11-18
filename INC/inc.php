@@ -95,8 +95,8 @@ class inc
                      <h3><i class="icon-leave-status">Status📋</i> </h3>
                  </a>
                  
-                 <a href="">
-                     <h3><i class="icon-statistics">Statistics📊</i></h3>
+                 <a href="../Module4/Display3.php">
+                     <h3><i  class="icon-statistics">Statistics📊</i></h3>
                  </a>
                   
                <?php
