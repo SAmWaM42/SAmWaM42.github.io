@@ -30,8 +30,11 @@ if (isset($_POST['status']) && isset($_POST['id'])) {
 }
 
 // Retrieve pending leave requests
+
 $sql = "SELECT ID, employee_ID, start_date, end_date, type, status FROM leave_requests";
+
 $result = $connection->query($sql);
+
 
 // Retrieve approved/rejected requests from leave_record
 $sqlApprovedRejected = "SELECT employee_ID, start_date, end_date, type, status FROM leave_record";
@@ -86,6 +89,7 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
         <thead>
         <tr>
            <th>EMPLOYEE ID</th>
+           <th>EMPLOYEE NAME</th>
            <th>START DATE</th>
            <th>END DATE</th>
            <th>TYPE</th>
@@ -98,6 +102,10 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row['employee_ID'] . "</td>";
+                    $emp_id= $row['employee_ID'];
+                    $sql2 = "SELECT name FROM employee WHERE ID =$emp_id ";
+                    $result2 = $connection->query($sql2);
+                    echo "<td>" . $result2->fetch_assoc()['name'] . "</td>";
                     echo "<td>" . $row['start_date'] . "</td>";
                     echo "<td>" . $row['end_date'] . "</td>";
                     echo "<td>" . $row['type'] . "</td>";
@@ -130,6 +138,7 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
         <thead>
             <tr>
                 <th>EMPLOYEE ID</th>
+                <th>EMPLOYEE NAME</th>
                 <th>START DATE</th>
                 <th>END DATE</th>
                 <th>TYPE</th>
@@ -142,6 +151,10 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
                 while ($row = $resultApprovedRejected->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row['employee_ID'] . "</td>";
+                    $emp_id= $row['employee_ID'];
+                    $sql2 = "SELECT name FROM employee WHERE ID =$emp_id ";
+                    $result2 = $connection->query($sql2);
+                    echo "<td>" . $result2->fetch_assoc()['name'] . "</td>";
                     echo "<td>" . $row['start_date'] . "</td>";
                     echo "<td>" . $row['end_date'] . "</td>";
                     echo "<td>" . $row['type'] . "</td>";
