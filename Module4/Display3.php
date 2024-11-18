@@ -56,10 +56,12 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave History</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="../Mod1/stylee.css">
-    <link rel="stylesheet" href="../CSS/style.css">
+    
     <style>
 
         main {
@@ -87,7 +89,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php
 
 $includes->nav_bar();
-$includes->inner_nav();
+$includes->inner_nav("no");
 
 ?>
     <!-- Navigation Bar -->

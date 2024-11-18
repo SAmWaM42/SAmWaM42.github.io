@@ -5,23 +5,21 @@ $connection = $conn->get_pdo_connection();
 
 
 try {
-    // Establish a connection to the database using PDO
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    // Establish a connectionection to the database using PDO
+  
     // Retrieve search term from GET request, if provided
     $search = isset($_GET['search']) ? $_GET['search'] : '';
 
     // Fetch all results initially
-    $sql = "SELECT employee_id, employee_name, leave_type, start_date, end_date FROM leaverequests";
-    $stmt = $conn->prepare($sql);
+    $sql = "SELECT employee_id, type, start_date, end_date FROM leave_requests";
+    $stmt = $connection->prepare($sql);
     $stmt->execute();
     $allResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Apply filter if search term is provided
     if ($search) {
         $sql .= " WHERE employee_id LIKE :search OR employee_name LIKE :search";
-        $stmt = $conn->prepare($sql);
+        $stmt = $connection->prepare($sql);
         $stmt->bindValue(':search', '%' . $search . '%');
         $stmt->execute();
         $filteredResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,16 +33,22 @@ try {
 }
 $title = 'Filter By Month or ID';
 
-$conn = null;
+$connection = null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeOff - Leave Management</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>TimeOff - Leave Management</title>  
+    <link rel="stylesheet" href="../CSS/style.css">
+
+
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link rel="stylesheet" href="../Mod1/stylee.css">
+   
     <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/dist/esm/icons/search.js" rel="stylesheet">
+
     <style>
         .search-icon {
             position: absolute;
@@ -65,10 +69,14 @@ $conn = null;
     <?php
     
     $includes->nav_bar();
-    $includes->inner_nav("Filter By Name or ID");
+    $includes->inner_nav('Filter By Name or ID');
     ?>
+    
 
+  
+   
     <!-- Main Content -->
+
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="p-6">
