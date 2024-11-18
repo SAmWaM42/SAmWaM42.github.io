@@ -23,6 +23,7 @@ CREATE TABLE employee (
     ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     org_ID INT NOT NULL,
     role_ID int not null,
+    password VARCHAR(255) NOT NULL --wasn't there initially
     Role VARCHAR(45) DEFAULT 'secretary',
     CONSTRAINT FOREIGN KEY (org_ID)
         REFERENCES organization (ID),
