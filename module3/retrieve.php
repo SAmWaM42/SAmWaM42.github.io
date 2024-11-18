@@ -34,8 +34,8 @@ class retrieve {
             return null; // Or throw an exception
         }
     }
-    public function getDaysTAken($emp_id){
-        $sql = "SELECT status, DATEDIFF(end_date,start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
+    public function getDaysTaken($emp_id){
+        $sql = "SELECT type,DATEDIFF(end_date,start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
                 $stmt->bindParam(2, $leaveType, PDO::PARAM_STR);

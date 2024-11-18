@@ -49,7 +49,57 @@ class retrieve {
         $stmt->execute([$emp_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getTotalDaysTaken($emp_id, $leaveType) {
+        $sql = "SELECT DATEDIFF(end_date, start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
+        $stmt->bindParam(2, $leaveType, PDO::PARAM_STR);
+        $stmt->execute();
+    
+        // Fetch all the records
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        
+        $totalDaysTaken = 0;
+    
+        // Iterate over all the results and sum up the days_taken
+        foreach ($results as $row) {
+            $totalDaysTaken += $row['days_taken'];  // Add the days_taken for each record
+        }
+    
+        return $totalDaysTaken;
+    }
+    public function getDaysAvailable() {
+        // SQL query to fetch leave types and available days
+        $sql2 = "SELECT name, days FROM type_values";
+        $stmt2 = $this->pdo->prepare($sql2);
+        $stmt2->execute();
+    
+        // Fetch all leave types and their available days as an associative array
+        $leaveTypes = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    
+        // Initialize a variable to sum the total available days
+        $totalDaysAvailable = 0;
+    
+        // Iterate over the leave types and sum the available days
+        foreach ($leaveTypes as $row) {
+            $totalDaysAvailable += $row['days']; // Add the 'days' value to the total
+        }
+    
+        // Optionally return or output the total available days
+        return $totalDaysAvailable; // Return the total available days
+    }
+    
+    
+
+    
+    
 }
+    $daysAvailable = $this->getDaysAvailable(); // Fetch available leave days
+
+// Get the total days taken (example for 'Annual Leave')
+     // You can dynamically set this value
+    $daysTaken = $this->getTotalDaysTaken($emp_id, $leaveType);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,66 +107,66 @@ class retrieve {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Days Chart</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
 </head>
 <body>
-    <div class="all">
-<div class="Anual">
-    <h2 class="chart_heading">Leave Days</h2>
-    <div class="leave_stats">
-        <div class="chart_container">
-            <canvas class="my_chart" width="400" height="400" aria-label="Leave days Chart" role="img"></canvas>
-            <script> 
-            document.addEventListener('DOMContentLoaded', () => {
-    const totalDays = 21;
-const daysTaken = 10;
-const daysRemaining = totalDays - daysTaken;
-    const ctx = document.querySelector('.my_chart').getContext('2d');
 
-    // Create the pie chart
-    const myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Days Taken', 'Days Remaining'],
-            datasets: [{
-                data: [daysTaken, daysRemaining],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)', // Red for Days Taken
-                    'rgba(54, 162, 235, 0.6)' // Blue for Days Remaining
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
+    <h2>Leave Days Chart</h2>
+    <div class="chart-container">
+        <canvas id="leaveChart" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pass PHP values to JavaScript
+            var daysAvailable = <?php echo $daysAvailable; ?>;
+            var daysTaken = <?php echo $daysTaken; ?>;
+
+            // Calculate remaining days
+            var daysRemaining = daysAvailable - daysTaken;
+
+            const ctx = document.getElementById('leaveChart').getContext('2d');
+
+            const leaveChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Days Taken', 'Days Remaining'], // Labels for the pie chart
+                    datasets: [{
+                        data: [daysTaken, daysRemaining], // Data for the pie chart
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)', // Red for Days Taken
+                            'rgba(54, 162, 235, 0.6)'  // Blue for Days Remaining
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw + ' days';
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + ' days';
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
-    });
+            });
 
-    // Update the details in the HTML
-    document.querySelector('days Remaining').textContent = daysRemaining;
-    document.querySelector('daysTaken').textContent = daysTaken;
-});
-
-             </script>
+            // Optional: Updating details in the HTML (for example if you want to show them as text)
+            document.querySelector('#daysRemaining').textContent = 'Days Remaining: ' + daysRemaining;
+            document.querySelector('#daysTaken').textContent = 'Days Taken: ' + daysTaken;
+        });
+    </script>
             
         </div>
 
@@ -136,26 +186,30 @@ const daysRemaining = totalDays - daysTaken;
             <canvas class="my_chart2" width="400" height="400" aria-label=" Type of leave" role="img"></canvas>
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
-                    const sicktotalDays = 15;
-const sickdaysTaken = 8;
-maternity = 8;
+                    var leaveBalances = <?php echo json_encode(array_values($leaveBalances)); ?>; // Get values only for chart
+                    var leaveTypes = <?php echo json_encode(array_keys($leaveBalances)); ?>; // Get keys for labels
+
     // Create the pie chart
     const myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: [' Sick Days Taken', 'Sick Days Remaining', 'maternity'],
+            labels: [ 'Sick Days ', 'maternity','paternity' ,'Compassionate'],
             datasets: [{
-                data: [sicktotalDays, sickdaysTaken, maternity],
+                data: [annual , sickdays ,maternity, paternity],
                 backgroundColor: [
-                    'rgba(255, 99, 13, 2, 0.6)', // Red for Days Taken
-                    'rgba(54, 162, 235, 0.6)', // Blue for Days Remaining
-                   ' rgba(255, 0, 0, 0.6)'//Black
+                    'rgba(255, 99, 13, 2, 0.6)', // Red for Sick days
+                    'rgba(54, 162, 235, 0.6)', // Blue for Maternity Leave
+                   ' rgba(255, 0, 0, 0.6)',//Black for Prternity leave
+                   'rgba(0, 255, 0, 0.6)'//Green for Compassionate leave
+
 
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(255, 0, 0, 0.6)'
+                    'rgba(255, 0, 0, 0.6)',
+                    'rgba(0, 255, 0, 0.6)'
+
 
                 ]
             }],
