@@ -57,6 +57,7 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+$title = 'Filter By Month or Name';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +77,7 @@ try {
 </head>
 <body class="min-h-screen bg-gray-50">
 <?php
+    
     $includes->nav_bar();
     $includes->inner_nav();
     ?>
