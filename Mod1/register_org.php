@@ -19,7 +19,7 @@ if (isset($_POST['register_org'])) {
     $message = $organization->registerOrganization($org_name, $org_unique_id);
 
     if (strpos($message, "successfully") !== false) {
-        header("Location: register_employee.php");
+        header("Location: Mod1/register_employee.php");
         exit();
     }
 }
