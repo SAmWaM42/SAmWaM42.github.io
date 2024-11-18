@@ -68,6 +68,19 @@ if (isset($_POST['register_employee'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Employee</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .existing-user {
+            color: brown;
+        }
+
+        .existing-user a {
+            color: green;
+        }
+
+        .existing-user a:hover {
+            color: darkgreen;
+        }
+    </style>
 </head>
 <body>
     <div class="logo-container">
@@ -102,6 +115,11 @@ if (isset($_POST['register_employee'])) {
         <?php if (!empty($message)): ?>
             <p class="message"><?php echo $message; ?></p>
         <?php endif; ?>
+
+        <!-- Link for existing users to login -->
+        <div class="existing-user">
+            <p>Existing User? <a href="login_employee.php">Login</a></p>
+        </div>
     </div>
 </body>
 </html>
