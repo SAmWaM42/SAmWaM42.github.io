@@ -96,8 +96,8 @@ class inc
                      <h3><i class="icon-leave-status">Status📋</i> </h3>
                  </a>
                  
-                 <a href="">
-                     <h3><i class="icon-statistics">Statistics📊</i></h3>
+                 <a href="../Module4/Display3.php">
+                     <h3><i  class="icon-statistics">Statistics📊</i></h3>
                  </a>
                  <?php
                  
@@ -105,19 +105,20 @@ class inc
                     if($title == "Filter By Month or Name")
                     {
                         ?>
-                        <a>
-                        <h3><i class="icon-leave-history">History📜</i></h3>
+                        <a href="Module4\filterByMonthOrName.php">
+                        <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
                          </a>
                          <?php
                     }
-                    else
-                    {
+                    if($title == "Filter By Name or ID")
+                        {
                         ?>
-                        <a>
-                        <h3><i class="icon-leave-history">History📜</i></h3>
+                        <a href="Module4\filterByNameOrID.php">
+                        <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
                         </a>
                         <?php
-                    }
+                        }
+                    
                     
                 
                  ?>
