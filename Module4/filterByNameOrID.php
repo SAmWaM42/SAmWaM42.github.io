@@ -6,10 +6,12 @@ $connection = $conn->get_pdo_connection();
 
 try {
     // Retrieve filter values from POST request, defaulting to 0 for month and an empty string for employee name
+
     $month = isset($_POST['month']) ? (int)$_POST['month'] : 0;
     $employee_name = isset($_POST['employee_name']) ? trim($_POST['employee_name']) : '';
 
     // Query for retrieving records
+    
     $sql = "SELECT lr.type, lr.employee_ID, lr.start_date, lr.end_date, e.name 
             FROM leave_requests lr 
             JOIN employee e ON lr.employee_ID = e.ID 
@@ -64,6 +66,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Leave Summary</title>
+    <link rel="stylesheet" href="../CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
          main{
@@ -75,9 +78,9 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
-<?php>
-    $includes->navBar();
-    $includes->innerNavBar();
+<?php
+    $includes->nav_bar();
+    $includes->inner_nav();
     ?>
     <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

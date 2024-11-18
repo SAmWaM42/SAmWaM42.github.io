@@ -44,6 +44,7 @@ $employee_id = $_SESSION['user_id'];
 
 
 $stmt = $connection->prepare($sql);
+
 $stmt->bindParam(':employee_ID', $employee_id, PDO::PARAM_INT);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
