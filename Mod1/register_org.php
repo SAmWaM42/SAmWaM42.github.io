@@ -46,6 +46,9 @@ if (isset($_POST['register_org'])) {
             <input type="text" name="org_name" placeholder="Organization Name" required>
             <input type="submit" name="register_org" value="Register">
         </form>
+
+        <!-- Link for users who already have an organization -->
+        <p>Already have an organization? <a href="register_employee.php">Register Employee</a></p>
     </div>
 </body>
 </html>
