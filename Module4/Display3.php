@@ -10,7 +10,7 @@ require_once '../load.php';
 // $database->pdo_connectionection('your_host', 'your_port', 'your_user', 'your_password', 'your_database');
 $connection = $conn->get_pdo_connection();
 
-$employee_id = $_SESSION['employee_ID'];
+$employee_id = $_SESSION['user_id'];
 
 
     // SELECT 

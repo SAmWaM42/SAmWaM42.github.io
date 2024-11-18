@@ -1,8 +1,8 @@
 <?php
 include '../load.php';
 
-$database = new Database();
-$conn = $database->getConnection();
+
+$connection = $conn->get_pdo_connection();
 
 try {
     // Retrieve filter values from POST request, defaulting to 0 for month and an empty string for employee name
@@ -20,7 +20,7 @@ try {
     if (!empty($employee_name)) {
         $sql .= " AND e.name LIKE :employee_name";
     }
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     if ($month > 0 && $month <= 12) {
         $stmt->bindParam(':month', $month, PDO::PARAM_INT);
     }
@@ -42,7 +42,7 @@ try {
     if (!empty($employee_name)) {
         $countSql .= " AND e.name LIKE :employee_name";
     }
-    $countStmt = $conn->prepare($countSql);
+    $countStmt = $connection->prepare($countSql);
     if ($month > 0 && $month <= 12) {
         $countStmt->bindParam(':month', $month, PDO::PARAM_INT);
     }
