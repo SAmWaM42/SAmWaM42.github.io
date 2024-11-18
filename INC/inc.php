@@ -105,7 +105,7 @@ class inc
                     if($title == "Filter By Month or Name")
                     {
                         ?>
-                        <a href="Module4\filterByMonthOrName.php">
+                        <a href="filterByMonthOrName.php">
                         <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
                          </a>
                          <?php
@@ -113,7 +113,7 @@ class inc
                     if($title == "Filter By Name or ID")
                         {
                         ?>
-                        <a href="Module4\filterByNameOrID.php">
+                        <a href="filterByNameOrID.php">
                         <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
                         </a>
                         <?php
