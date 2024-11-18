@@ -39,6 +39,7 @@ $result = $connection->query($sql);
 // Retrieve approved/rejected requests from leave_record
 $sqlApprovedRejected = "SELECT employee_ID, start_date, end_date, type, status FROM leave_record";
 $resultApprovedRejected = $connection->query($sqlApprovedRejected);
+$title= 'Status';
 ?>
 
 <!DOCTYPE html>

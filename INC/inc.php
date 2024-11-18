@@ -92,7 +92,7 @@ class inc
                      <h3><i class="icon-leave-request">Request📅</i></h3>
                  </a>
                  
-                 <a href="">
+                 <a href="requests.php">
                      <h3><i class="icon-leave-status">Status📋</i> </h3>
                  </a>
                  
@@ -119,6 +119,7 @@ class inc
                              </a>
                              <?php
                         }
+
                     
                     
                 
