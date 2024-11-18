@@ -86,7 +86,7 @@ try {
                     <a style="background-color:white;color:green;border-radius:10px;" href="filterByNameOrID.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         Search Employee Leave Records
                     </a>
-                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthAndName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
+                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthOrName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         View Monthly Leave Summary
                     </a>
                 </div>
