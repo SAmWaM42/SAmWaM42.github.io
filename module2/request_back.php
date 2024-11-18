@@ -1,15 +1,14 @@
 <?php
 //back end of request_form
 session_start();
-$_SESSION["ID"] = 1;
-$_SESSION["Worker_ID"] = 1;
+
 require_once "../load.php";
 var_dump($_POST);
 $status = 'pending';
 if ($_POST["leave_type"] == "Assigned") 
 {
     $statement ='insert into leave_requests(employee_ID,start_date,end_date) values (?,?,?)';
-    $values = [$_SESSION["Worker_ID"], $_POST["start_date"], $_POST["end_date"]];
+    $values = [$_SESSION["user_id"], $_POST["start_date"], $_POST["end_date"]];
     $conn->insert_data($statement, $values,false);
 
     header("Location:../module3/Dashboard.php");
@@ -26,7 +25,7 @@ else
     $val=date_format($date,'Y-m-d');
     echo $val;
     $statement ='insert into leave_requests(employee_ID,type,start_date,end_date) values (?,?,?,?)';
-    $values = [ $_SESSION["Worker_ID"], $_POST["special_type"],$_POST["start_date"], $val];
+    $values = [ $_SESSION["user_id"], $_POST["special_type"],$_POST["start_date"], $val];
     $conn->insert_data($statement, $values,true);
     header("Location:../module3/Dashboard.php");
 }

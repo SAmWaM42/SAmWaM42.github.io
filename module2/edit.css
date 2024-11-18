@@ -138,6 +138,7 @@ header p{
 
 
     }
+    }
 
     .navbar__menu{
         display: grid;
@@ -245,6 +246,7 @@ header p{
 
     /* Style the form container */
 form {
+    margin-left: 37%;
     background-color: #4caf50; /* Green background */
     padding: 20px;
     border-radius: 8px;
@@ -343,4 +345,3 @@ button[type="submit"]:hover {
     transition: 0.3s ease-out;
 }
 /*End of Copy*/
-}

@@ -1,6 +1,7 @@
 <?php
 class inc
 {
+    
     public function header($title)
     {
         ?>
@@ -66,7 +67,7 @@ class inc
             <?php
 
     }
-    public function inner_nav()
+    public function inner_nav($title)
     {
         ?>
         
@@ -98,6 +99,29 @@ class inc
                  <a href="../Module4/Display3.php">
                      <h3><i  class="icon-statistics">Statistics📊</i></h3>
                  </a>
+                 <?php
+                 
+                    
+                    if($title == "Filter By Month or Name")
+                    {
+                        ?>
+                        <a href="Module4\filterByMonthOrName.php">
+                        <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
+                         </a>
+                         <?php
+                    }
+                    if($title == "Filter By Name or ID")
+                        {
+                        ?>
+                        <a href="Module4\filterByNameOrID.php">
+                        <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
+                        </a>
+                        <?php
+                        }
+                    
+                    
+                
+                 ?>
                   
                <?php
 
