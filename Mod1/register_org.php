@@ -16,7 +16,7 @@ if (isset($_POST['register_org'])) {
     $org_name = $_POST['org_name'];
     $org_unique_id = uniqid('ORG_');
 
-    $message = $organization->registerOrganization($org_name, $org_unique_id);
+    $message = $organization->register_org($org_name, $org_unique_id);
 
     if (strpos($message, "successfully") !== false) {
         header("Location:register_employee.php");
@@ -42,7 +42,7 @@ if (isset($_POST['register_org'])) {
         <?php if (!empty($message)): ?>
             <p class="error-message"><?php echo $message; ?></p>
         <?php endif; ?>
-        <form action="register_organization.php" method="POST">
+        <form action="register_org.php" method="POST">
             <input type="text" name="org_name" placeholder="Organization Name" required>
             <input type="submit" name="register_org" value="Register">
         </form>
