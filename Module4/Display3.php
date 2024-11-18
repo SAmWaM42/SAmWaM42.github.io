@@ -84,6 +84,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php
 
 $includes->nav_bar();
+$includes->inner_nav();
 
 ?>
     <!-- Navigation Bar -->
