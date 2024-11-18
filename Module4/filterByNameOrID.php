@@ -59,6 +59,7 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+$title = 'Filter By Name or ID';
 ?>
 <!DOCTYPE html>
 <html lang="en">
