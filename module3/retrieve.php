@@ -45,7 +45,7 @@ class retrieve {
 
     // Fetch leave requests for the employee
     public function getLeaveRequests($emp_id) {
-        $sql = "SELECT leave_type, status FROM leave_requests WHERE employee_ID = ?";
+        $sql = "SELECT type,status FROM leave_requests WHERE employee_ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$emp_id]);
         

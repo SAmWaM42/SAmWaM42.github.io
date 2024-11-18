@@ -1,8 +1,8 @@
 <?php
 include '../load.php';
 
-$database = new Database();
-$conn = $database->getConnection();
+
+$connection = $conn->get_pdo_connection();
 
 try {
     // Retrieve filter values from POST request, defaulting to 0 for month and an empty string for employee name
@@ -20,7 +20,7 @@ try {
     if (!empty($employee_name)) {
         $sql .= " AND e.name LIKE :employee_name";
     }
-    $stmt = $conn->prepare($sql);
+    $stmt = $connection->prepare($sql);
     if ($month > 0 && $month <= 12) {
         $stmt->bindParam(':month', $month, PDO::PARAM_INT);
     }
@@ -42,7 +42,7 @@ try {
     if (!empty($employee_name)) {
         $countSql .= " AND e.name LIKE :employee_name";
     }
-    $countStmt = $conn->prepare($countSql);
+    $countStmt = $connection->prepare($countSql);
     if ($month > 0 && $month <= 12) {
         $countStmt->bindParam(':month', $month, PDO::PARAM_INT);
     }
@@ -75,6 +75,33 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
+    <nav class="navbar">
+    <div class="navbar__container">
+        <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    Home
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    About
+                </a>
+            </li>
+            <li class="navbar__btn">
+                <a href="login_employee.php" class="button">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </div>
+    </nav>
     <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -86,7 +113,7 @@ try {
                     <a style="background-color:white;color:green;border-radius:10px;" href="filterByNameOrID.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         Search Employee Leave Records
                     </a>
-                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthAndName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
+                    <a style="background-color:white;color:green;border-radius:10px;" href="filterByMonthOrName.php" class="text-white bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-green-600">
                         View Monthly Leave Summary
                     </a>
                 </div>

@@ -21,7 +21,7 @@ if (isset($_POST['login_employee'])) {
         $_SESSION['user_id'] = $result['ID'];
         $_SESSION['org_name'] = $result['org_name'];
 
-        header("Location: /SAmWaM42.github.io/module3/Dashboard.php");
+        header("Location:../module3/Dashboard.php");
         exit();
     } else {
         $message = "Invalid username or password";
