@@ -1,3 +1,4 @@
+<?php
 class User {
     private $conn;
 
@@ -44,3 +45,4 @@ class User {
         return false; // Authentication failed
     }
 }
+?>
