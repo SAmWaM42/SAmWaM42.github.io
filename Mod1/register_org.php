@@ -16,7 +16,7 @@ if (isset($_POST['register_org'])) {
     $org_name = $_POST['org_name'];
     $org_unique_id = uniqid('ORG_');
 
-    $message = $organization->register_org($org_name, $org_unique_id);
+    $message = $organization->registerOrganization($org_name, $org_unique_id);
 
     if (strpos($message, "successfully") !== false) {
         header("Location:register_employee.php");
