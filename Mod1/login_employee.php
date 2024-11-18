@@ -1,10 +1,10 @@
 <?php
-require_once 'conn.php';
+require_once '../load.php';
 require_once 'User.php';
 
-$db_instance = new conn();
-$db_instance->connection('localhost', 'root', '', 'se');
-$db_conn = $db_instance->get_connection();
+
+
+$db_conn = $conn->get_connection();
 
 $user = new User($db_conn);
 

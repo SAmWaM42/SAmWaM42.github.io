@@ -1,11 +1,10 @@
 <?php
-require_once 'conn.php';
+require_once '../load.php';
 require_once 'User.php';
 
 // Initialize Database
-$db_instance = new conn();
-$db_instance->connection('localhost', 'root', '', 'se');
-$db_conn = $db_instance->get_connection();
+
+$db_conn = $conn->get_connection();
 
 // Initialize User class
 $user = new User($db_conn);
@@ -14,18 +13,26 @@ $user = new User($db_conn);
 $orgQuery = "SELECT ID, name FROM organization";
 $orgResult = $db_conn->query($orgQuery);
 
+$roleQuery = "SELECT ID, name FROM roles";
+$roleResult = $db_conn->query($roleQuery);
+
+// Fetch all genders
+$genderQuery = "SELECT ID, name FROM gender";
+$genderResult = $db_conn->query($genderQuery);
+
 // Handle employee registration
 $message = '';
 if (isset($_POST['register_employee'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     $org_id = $_POST['org_id'];
+    $gender_id = $_POST['gender_id'];
 
     if (empty($username) || empty($password) || empty($org_id)) {
         $message = "All fields are required!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $message = $user->registerEmployee($username, $hashed_password, $org_id);
+        $message = $user->registerEmployee($username, $hashed_password, $org_id,$gender_id);
 
         if ($message === "Employee registered successfully.") {
             header("Location: login_employee.php");
@@ -59,10 +66,11 @@ if (isset($_POST['register_employee'])) {
                     <option value="<?php echo $org['ID']; ?>"><?php echo htmlspecialchars($org['name']); ?></option>
                 <?php endwhile; ?>
             </select>
-            <select name="role_id" required>
-                <option value="">Select Role</option>
-                <?php while ($role = $roleResult->fetch_assoc()): ?>
-                    <option value="<?php echo $role['ID']; ?>"><?php echo htmlspecialchars($role['name']); ?></option>
+
+            <select name="gender_id" required>
+                <option value="">Select Gender</option>
+                <?php while ($gender = $genderResult->fetch_assoc()): ?>
+                    <option value="<?php echo $gender['ID']; ?>"><?php echo htmlspecialchars($gender['name']); ?></option>
                 <?php endwhile; ?>
             </select>
             <input type="submit" name="register_employee" value="Register">
