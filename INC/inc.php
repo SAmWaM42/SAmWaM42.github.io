@@ -102,7 +102,7 @@ class inc
                  <?php
                  
                     
-                    if($title == "Filter By Month or Name")
+                    if($title =="Filter By Name or ID" )
                     {
                         ?>
                         <a href="filterByMonthOrName.php">
@@ -110,7 +110,7 @@ class inc
                          </a>
                          <?php
                     }
-                    if($title == "Filter By Name or ID")
+                    if($title ==  "Filter By Month or Name")
                         {
                         ?>
                         <a href="filterByNameOrID.php">

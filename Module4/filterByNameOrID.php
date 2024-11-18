@@ -65,10 +65,16 @@ $conn = null;
     <?php
     
     $includes->nav_bar();
+<<<<<<< HEAD
+    $includes->inner_nav('Filter By Name or ID');
+    ?>
+    
+=======
     $includes->inner_nav("Filter By Name or ID");
     ?>
 
     <!-- Main Content -->
+>>>>>>> aa1c778f50765fdb016779305ef93581574ea5cb
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="p-6">
