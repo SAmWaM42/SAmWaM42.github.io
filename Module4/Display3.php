@@ -58,6 +58,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Leave History</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../Mod1/stylee.css">
+    <link rel="stylesheet" href="../CSS/style.css">
     <style>
 
         main {
