@@ -50,10 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Employee</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Edit Employee</title> 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="edit.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+   
 </head>
 <body>
 
@@ -132,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <p class="website__right"> &copy; TimeOff 2024. All rights reserved</p>
 </div>
-
 
 </body>
 </html>
