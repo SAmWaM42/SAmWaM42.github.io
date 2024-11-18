@@ -25,18 +25,25 @@ $message = '';
 if (isset($_POST['register_employee'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     $org_id = $_POST['org_id'];
     $gender_id = $_POST['gender_id'];
 
-    if (empty($username) || empty($password) || empty($org_id)) {
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id) || empty($gender_id)) {
         $message = "All fields are required!";
+    } elseif ($password !== $confirm_password) {
+        $message = "Passwords do not match!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $message = $user->registerEmployee($username, $hashed_password, $org_id,$gender_id);
 
-        if ($message === "Employee registered successfully.") {
-            header("Location: login_employee.php");
-            exit();
+            if ($message === "Employee registered successfully.") {
+                header("Location:login_employee.php");
+                exit();
+            }
+        } else {
+            // Invalid gender_id, return an error message
+            $message = "Invalid gender selected.";
         }
     }
 }
@@ -49,6 +56,19 @@ if (isset($_POST['register_employee'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Employee</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .existing-user {
+            color: brown;
+        }
+
+        .existing-user a {
+            color: green;
+        }
+
+        .existing-user a:hover {
+            color: darkgreen;
+        }
+    </style>
 </head>
 <body>
     <div class="logo-container">
@@ -78,6 +98,11 @@ if (isset($_POST['register_employee'])) {
         <?php if (!empty($message)): ?>
             <p class="message"><?php echo $message; ?></p>
         <?php endif; ?>
+
+        <!-- Link for existing users to login -->
+        <div class="existing-user">
+            <p>Existing User? <a href="login_employee.php">Login</a></p>
+        </div>
     </div>
 </body>
 </html>

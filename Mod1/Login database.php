@@ -2,8 +2,8 @@
 class Database {
     private $host = 'localhost';  // Your database host
     private $user = 'root';       // Your database username
-    private $pass = '';           // Your database password
-    private $dbname = 'se';  // Your database name
+    private $pass = '232312';           // Your database password
+    private $dbname = 'timeoff_database';  // Your database name
     private $conn;
 
     // Function to establish connection with the database
@@ -28,7 +28,7 @@ class Database {
         try {
             $dsn ="mysql:host=" . $this->host. ";dbname=" . $this->dbname;
             $options = [
-                PDO::ATTR-ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_PERSISTENT => true,
 

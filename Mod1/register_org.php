@@ -41,7 +41,7 @@ if (isset($_POST['register_org']))
     $message=$user->registerAdmin($username,$hashed_password,$org_unique_id,$r_id,$gender_id);
 
     if (strpos($message, "successfully") !== false) {
-        header("Location: register_employee.php");
+        header("Location:register_employee.php");
         exit();
     }
 }
@@ -65,6 +65,7 @@ if (isset($_POST['register_org']))
             <p class="error-message"><?php echo $message; ?></p>
         <?php endif; ?>
         <form action="register_org.php" method="POST">
+        <form action="register_org.php" method="POST">
             <input type="text" name="org_name" placeholder="Organization Name" required>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
@@ -80,6 +81,9 @@ if (isset($_POST['register_org']))
             
         </form>
         </form>
+
+        <!-- Link for users who already have an organization -->
+        <p>Have an organization? <a href="register_employee.php">Register Employee</a></p>
     </div>
 </body>
 </html>

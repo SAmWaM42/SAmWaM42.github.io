@@ -84,5 +84,4 @@ insert into type_values(name,days) values ('Compassionate',4);
 
 
 
-
  

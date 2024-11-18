@@ -14,7 +14,9 @@ class Organization {
 
 
         if ($stmt->execute()) {
-            return "Organization registered successfully! Your Organization ID is: " . $org_unique_id;
+            // Fetch the inserted organization ID
+            $org_id = $stmt->insert_id;
+            return "Organization registered successfully! Your Organization ID is: " . $org_id;
         } else {
             return "Error: " . $this->conn->error;
         }
