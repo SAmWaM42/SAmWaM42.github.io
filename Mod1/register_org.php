@@ -48,7 +48,7 @@ if (isset($_POST['register_org'])) {
         </form>
 
         <!-- Link for users who already have an organization -->
-        <p>Already have an organization? <a href="register_employee.php">Register Employee</a></p>
+        <p>Have an organization? <a href="register_employee.php">Register Employee</a></p>
     </div>
 </body>
 </html>
