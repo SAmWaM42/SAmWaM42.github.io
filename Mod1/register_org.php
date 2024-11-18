@@ -54,6 +54,21 @@ if (isset($_POST['register_org']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Organization</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+    <style>
+        /* Style for users who already have an organization */
+        .existing-organization {
+            color: brown;
+        }
+
+        /* Style for the link to register an employee */
+        .register-link {
+            color: green;
+        }
+
+        .register-link:hover {
+            color: darkgreen;
+        }
+    </style>
 </head>
 <body>
     <div class="logo-container">
@@ -83,7 +98,7 @@ if (isset($_POST['register_org']))
         </form>
 
         <!-- Link for users who already have an organization -->
-        <p>Have an organization? <a href="register_employee.php">Register Employee</a></p>
+        <p class="existing-organization">Already have an organization? <a class="register-link" href="register_employee.php">Register Employee</a></p>
     </div>
 </body>
 </html>

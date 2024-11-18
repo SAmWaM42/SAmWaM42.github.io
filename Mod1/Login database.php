@@ -2,7 +2,7 @@
 class Database {
     private $host = 'localhost';  // Your database host
     private $user = 'root';       // Your database username
-    private $pass = '232312';           // Your database password
+    private $pass = '';           // Your database password
     private $dbname = 'timeoff_database';  // Your database name
     private $conn;
 
