@@ -1,4 +1,4 @@
-<?php 
+<?php  
 require_once 'conn.php';
 require_once 'User.php';
 
@@ -62,7 +62,11 @@ if (isset($_POST['login_employee'])) {
         <?php endif; ?>
         <form action="login_employee.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+            
+            <!-- Password field with toggle visibility functionality -->
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <button type="button" id="showPasswordBtn">Show Password</button>
+
             <input type="submit" name="login_employee" value="Login">
         </form>
 
@@ -71,5 +75,28 @@ if (isset($_POST['login_employee'])) {
             <p>Don't have an account? <a href="register_employee.php">Register</a></p>
         </div>
     </div>
+
+    <script>
+        // Toggle password visibility and automatically hide after 2 seconds
+        document.getElementById("showPasswordBtn").addEventListener("click", function() {
+            var passwordField = document.getElementById("password");
+            var button = document.getElementById("showPasswordBtn");
+
+            // Toggle the password visibility
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                button.textContent = "Hide Password";  // Change button text
+            } else {
+                passwordField.type = "password";
+                button.textContent = "Show Password";  // Reset button text
+            }
+
+            // Optionally hide the password after 2 seconds
+            setTimeout(function() {
+                passwordField.type = "password";
+                button.textContent = "Show Password";  // Reset button text after timeout
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
