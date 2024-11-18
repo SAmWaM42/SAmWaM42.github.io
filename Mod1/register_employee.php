@@ -18,6 +18,10 @@ $orgResult = $db_conn->query($orgQuery);
 $roleQuery = "SELECT ID, name FROM roles";
 $roleResult = $db_conn->query($roleQuery);
 
+// Fetch all genders
+$genderQuery = "SELECT ID, name FROM gender";
+$genderResult = $db_conn->query($genderQuery);
+
 // Handle employee registration
 $message = '';
 if (isset($_POST['register_employee'])) {
@@ -26,14 +30,15 @@ if (isset($_POST['register_employee'])) {
     $confirm_password = $_POST['confirm_password'];
     $org_id = $_POST['org_id'];
     $role_id = $_POST['role_id'];
+    $gender_id = $_POST['gender_id'];
 
-    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id)) {
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($org_id) || empty($role_id) || empty($gender_id)) {
         $message = "All fields are required!";
     } elseif ($password !== $confirm_password) {
         $message = "Passwords do not match!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id);
+        $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id, $gender_id);
 
         if ($message === "Employee registered successfully.") {
             header("Location: Mod1/login_employee.php");
@@ -71,6 +76,12 @@ if (isset($_POST['register_employee'])) {
                 <option value="">Select Role</option>
                 <?php while ($role = $roleResult->fetch_assoc()): ?>
                     <option value="<?php echo $role['ID']; ?>"><?php echo htmlspecialchars($role['name']); ?></option>
+                <?php endwhile; ?>
+            </select>
+            <select name="gender_id" required>
+                <option value="">Select Gender</option>
+                <?php while ($gender = $genderResult->fetch_assoc()): ?>
+                    <option value="<?php echo $gender['ID']; ?>"><?php echo htmlspecialchars($gender['name']); ?></option>
                 <?php endwhile; ?>
             </select>
             <input type="submit" name="register_employee" value="Register">
