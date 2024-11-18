@@ -57,7 +57,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave History</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../Mod1/stylee.css">
     <style>
+
         main {
             width: 90%;
         }
@@ -79,8 +81,15 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
+
+<?php
+
+$includes->nav_bar();
+$includes->inner_nav();
+
+?>
     <!-- Navigation Bar -->
-    <nav class="bg-green-500 shadow-md">
+    <!-- <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
@@ -97,8 +106,37 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
+    <!-- <nav class="navbar">
+    <div class="navbar__container">
+        <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    Home
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    About
+                </a>
+            </li>
+            <li class="navbar__btn">
+                <a href="login_employee.php" class="button">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav> -->
+
+    
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">

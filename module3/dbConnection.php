@@ -1,4 +1,5 @@
 <?php
+    //ignore this file
     class dbConnection{
         private $connection;
         private$db_type;
