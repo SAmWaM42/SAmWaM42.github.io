@@ -1,6 +1,7 @@
 <?php
 class inc
 {
+    
     public function header($title)
     {
         ?>
@@ -66,7 +67,7 @@ class inc
             <?php
 
     }
-    public function inner_nav()
+    public function inner_nav($title)
     {
         ?>
         
@@ -99,18 +100,26 @@ class inc
                      <h3><i class="icon-statistics">Statistics📊</i></h3>
                  </a>
                  <?php
-                 <a>
+                 
                     
                     if($title == "Filter By Month or Name")
                     {
+                        ?>
+                        <a>
                         <h3><i class="icon-leave-history">History📜</i></h3>
+                         </a>
+                         <?php
                     }
                     else
                     {
+                        ?>
+                        <a>
                         <h3><i class="icon-leave-history">History📜</i></h3>
+                        </a>
+                        <?php
                     }
                     
-                 </a>
+                
                  ?>
                   
                <?php
