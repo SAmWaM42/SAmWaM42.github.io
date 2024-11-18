@@ -4,7 +4,7 @@ require_once 'User.php';
 
 // Initialize Database
 $db_instance = new conn();
-$db_instance->connection('localhost', 'root', '', 'se');
+$db_instance->connection('localhost', 'root', '232312', 'timeoff_database');
 $db_conn = $db_instance->get_connection();
 
 // Initialize User class
