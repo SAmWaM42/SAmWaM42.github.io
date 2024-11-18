@@ -44,6 +44,7 @@ $resultApprovedRejected = $connection->query($sqlApprovedRejected);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="requests.css">
 </head>

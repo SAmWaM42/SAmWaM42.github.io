@@ -98,6 +98,20 @@ class inc
                  <a href="">
                      <h3><i class="icon-statistics">Statistics📊</i></h3>
                  </a>
+                 <?php
+                 <a>
+                    
+                    if($title == "Filter By Month or Name")
+                    {
+                        <h3><i class="icon-leave-history">History📜</i></h3>
+                    }
+                    else
+                    {
+                        <h3><i class="icon-leave-history">History📜</i></h3>
+                    }
+                    
+                 </a>
+                 ?>
                   
                <?php
 
