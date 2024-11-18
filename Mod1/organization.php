@@ -7,12 +7,16 @@ class Organization {
     }
 
     public function registerOrganization($org_name, $org_unique_id) {
-        $query = "INSERT INTO organization (name, unique_id) VALUES (?, ?)";
+        $query = "INSERT INTO organization (name,ID) VALUES(?,?) ";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss', $org_name, $org_unique_id);
+        $stmt->bind_param('ss', $org_name,$org_unique_id);
+      
+
 
         if ($stmt->execute()) {
-            return "Organization registered successfully! Your Organization ID is: " . $org_unique_id;
+            // Fetch the inserted organization ID
+            $org_id = $stmt->insert_id;
+            return "Organization registered successfully! Your Organization ID is: " . $org_id;
         } else {
             return "Error: " . $this->conn->error;
         }

@@ -10,30 +10,62 @@ class leavebalancetracking {
 
     public function assignBalance() {
         try {
-            $sql1 = "SELECT emp_id FROM employess"; 
+            // Fetch all employee IDs
+            $sql1 = "SELECT ID FROM employee"; 
             $stmt1 = $this->pdo->prepare($sql1);
             $stmt1->execute();
-            $employeeIds = $stmt1->fetchAll(PDO::FETCH_COLUMN); 
-
+            $employeeIds = $stmt1->fetchAll(PDO::FETCH_COLUMN);
+    
+            // Fetch leave types and corresponding days
+            $sql2 = "SELECT name, days FROM type_values";
+            $stmt2 = $this->pdo->prepare($sql2);
+            $stmt2->execute();
+            $leaveTypes = $stmt2->fetchAll(PDO::FETCH_KEY_PAIR); // Leave types as key-value pairs
+    
             foreach ($employeeIds as $emp_id) {
-                $sql2 = "INSERT INTO leave_balance (emp_id, annual_leave_balance, sick_leave_balance, maternity_leave_balance, last_accrual_date) 
-                         VALUES (:emp_id, 21, 14, 90, NOW()) 
-                         ON DUPLICATE KEY UPDATE 
-                         annual_leave_balance = VALUES(annual_leave_balance), 
-                         sick_leave_balance = VALUES(sick_leave_balance), 
-                         maternity_leave_balance = VALUES(maternity_leave_balance), 
-                         last_accrual_date = NOW()"; // Prevents duplicate entries
-                         
-                $stmt = $this->pdo->prepare($sql2);
-                $stmt->bindParam(':emp_id', $emp_id, PDO::PARAM_INT);
-                $stmt->execute();
+                // Check if leave balance already exists for this employee
+                $checkSql = "SELECT COUNT(*) FROM leave_balance WHERE emp_id = :emp_id";
+                $checkStmt = $this->pdo->prepare($checkSql);
+                $checkStmt->bindParam(':emp_id', $emp_id, PDO::PARAM_INT);
+                $checkStmt->execute();
+                $exists = $checkStmt->fetchColumn();
+    
+                if ($exists) {
+                    continue; // Skip if leave balance already exists
+                }
+    
+                // Prepare SQL for inserting initial leave balances
+                $sql3 = "INSERT INTO leave_balance 
+                         (emp_id, annual_leave_balance, sick_leave_balance, maternity_leave_balance, last_accrual_date) 
+                         VALUES (:emp_id, :annual_leave_balance, :sick_leave_balance, :maternity_leave_balance, NOW())";
+    
+                $stmt3 = $this->pdo->prepare($sql3);
+    
+                // Map leave types to the specific columns
+                $annualLeave = $leaveTypes['Annual'] ?? 0;
+                $sickLeave = $leaveTypes['Sick'] ?? 0;
+                $maternityLeave = $leaveTypes['Maternity'] ?? 0;
+    
+                // Bind values explicitly
+                $stmt3->bindValue(':emp_id', $emp_id, PDO::PARAM_INT);
+                $stmt3->bindValue(':annual_leave_balance', $annualLeave, PDO::PARAM_INT);
+                $stmt3->bindValue(':sick_leave_balance', $sickLeave, PDO::PARAM_INT);
+                $stmt3->bindValue(':maternity_leave_balance', $maternityLeave, PDO::PARAM_INT);
+    
+                $stmt3->execute();
             }
+    
             echo "<script>alert('Assigned balance successfully.');</script>";
         } catch (PDOException $e) {
-            echo "Failed to assign balance: " . $e->getMessage();
+            if ($e->getCode() == 23000) { 
+                echo "<script>alert('Leave balance already exists.');</script>";
+            } else {
+                echo "Failed to assign balance: " . $e->getMessage();
+            }
         }
     }
-
+    
+    
     public function findBalance($emp_id) {
         
 
@@ -47,37 +79,33 @@ class leavebalancetracking {
                 $leaveType = $leaveTypeData['leave_type'];
     
                 // Fetch leave request status and days taken from requests
-                $sql = "SELECT status, days_taken FROM requests WHERE emp_id = ? AND leave_type = ?";
+                $sql = "SELECT status, DATEDIFF(end_date,start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
                 $stmt->bindParam(2, $leaveType, PDO::PARAM_STR);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
-                if ($result) {
-                    $status = $result['status'];
-                    $daysTaken = $result['days_taken'];
-    
-                    if ($status === 'approved') {
-                        // Determine which balance to adjust based on the leave type
-                        $balanceColumn = '';
-                        switch ($leaveType) {
-                            case 'annual':
-                                $balanceColumn = 'annual_leave_balance';
-                                break;
-                            case 'sick':
-                                $balanceColumn = 'sick_leave_balance';
-                                break;
-                            case 'maternity':
-                                $balanceColumn = 'maternity_leave_balance';
-                                break;
-                            default:
-                                echo "Invalid leave type.";
-                                return;
-                        }
+                if ($result&&$result['status']==='Accepted') {                    
+                     // Determine which balance to adjust based on the leave type
+                    $balanceColumn = '';
+                    switch ($leaveType) {
+                        case 'annual':
+                            $balanceColumn = 'annual_leave_balance';
+                            break;
+                        case 'sick':
+                            $balanceColumn = 'sick_leave_balance';
+                            break;
+                        case 'maternity':
+                            $balanceColumn = 'maternity_leave_balance';
+                            break;
+                        default:
+                            echo "Invalid leave type.";
+                            return;
+                    }
     
                         // Get the current balance
-                        $sql = "SELECT $balanceColumn FROM leave_balance WHERE emp_id = ?";
+                        $sql = "SELECT $balanceColumn FROM leave_balance WHERE employee_id = ?";
                         $stmt = $this->pdo->prepare($sql);
                         $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
                         $stmt->execute();
@@ -105,11 +133,10 @@ class leavebalancetracking {
                     } else {
                         echo "<script>alert('Your leave request for $leaveType is pending or not approved.');</script>";
                     }
-                } else {
-                    echo "No leave request found for employee $emp_id and leave type $leaveType.";
-                }
+                } 
+                
             }
-        } catch (PDOException $e) {
+         catch (PDOException $e) {
             echo "Failed to update balance: " . $e->getMessage();
         }
     }

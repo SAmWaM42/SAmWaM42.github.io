@@ -7,7 +7,7 @@ class retrieve {
     }
 
     public function getEmployeeInfo($emp_id) {
-        $sql = "SELECT emp_name FROM employess WHERE emp_id = ?";
+        $sql = "SELECT name FROM employee WHERE ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$emp_id]);
         
@@ -34,17 +34,26 @@ class retrieve {
             return null; // Or throw an exception
         }
     }
+    public function getDaysTAken($emp_id){
+        $sql = "SELECT status, DATEDIFF(end_date,start_date) AS days_taken FROM leave_record WHERE employee_ID = ? AND type = ?";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
+                $stmt->bindParam(2, $leaveType, PDO::PARAM_STR);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     // Fetch leave requests for the employee
     public function getLeaveRequests($emp_id) {
-        $sql = "SELECT leave_type, status FROM requests WHERE emp_id = ?";
+        $sql = "SELECT type,status FROM leave_requests WHERE employee_ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$emp_id]);
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Will return an empty array if no requests found
     }
+
     public function getLeavetype($emp_id){
-        $sql = "SELECT leave_type FROM requests WHERE emp_id = ?";
+        $sql = "SELECT type FROM leave_requests WHERE employee_ID = ?";
         $stmt = $this ->pdo ->prepare($sql);
         $stmt->execute([$emp_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

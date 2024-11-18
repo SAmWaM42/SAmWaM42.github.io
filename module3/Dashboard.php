@@ -4,28 +4,31 @@
 require_once('../load.php');
 require_once('leavebalancetracking.php');
 require_once('retrieve.php');
+$pdo=$conn->get_pdo_connection();
 
 $Objretrieve = new Retrieve($pdo);
+$Objbalance=new leavebalancetracking($pdo);
 
 // Sample employee ID for display (replace with session variable or dynamic ID in a real app)
 session_start();
-if (!isset($_SESSION['emp_id'])) {
+if (!isset($_SESSION['user_id'])) {
     // Redirect to login page if not logged in
-    header('Location: login.php');
+    header('Location: ../Mod1/login_employee.php');
     exit();
 }
-$emp_id = $_SESSION['emp_id']; // Ideally, this should come from session or user input
-$leaveType = $Objretrieve ->getLeavetype($emp_id);
+$user_id = $_SESSION['user_id']; // Ideally, this should come from session or user input
+$leaveType = $Objretrieve ->getLeavetype($user_id);
 
 // Fetch employee info
-$employeeInfo = $Objretrieve->getEmployeeInfo($emp_id);
+$employeeInfo = $Objretrieve->getEmployeeInfo($user_id);
 
 // Fetch leave balances
-$leaveBalances = $Objretrieve->getLeaveBalances($emp_id);
+$leaveBalances = $Objretrieve->getLeaveBalances($user_id);
 
 // Fetch leave requests
-$leaveRequests = $Objretrieve->getLeaveRequests($emp_id);
-$Objbalance->findBalance($emp_id, $leaveType);
+$leaveRequests = $Objretrieve->getLeaveRequests($user_id);
+$Objbalance->findBalance($user_id);
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +62,7 @@ $Objbalance->findBalance($emp_id, $leaveType);
         
         <!-- Employee Info -->
         <div class="employee-info">
-            <p><strong>Employee Name:</strong> <?php echo htmlspecialchars($employeeInfo['emp_name']); ?></p>
+            <p><strong>Employee Name:</strong> <?php echo htmlspecialchars($employeeInfo['name']); ?></p>
         </div>
 
         <!-- Leave Requests and Approvals Section -->
@@ -79,6 +82,7 @@ $Objbalance->findBalance($emp_id, $leaveType);
             <div class="leave-category">Annual Leave</div>
             <div class="leave-category">Sick Leave</div>
             <div class="leave-category">Maternity Leave</div>
+            <div class="leave-category">Compassionate Leave</div>
             <a href="#" class="see-all">See All</a>
         </div>
     </div>
@@ -88,9 +92,21 @@ $Objbalance->findBalance($emp_id, $leaveType);
         <!-- Remaining Days -->
         <div class="remaining-days">
             <h3>Remaining Days</h3>
-            <?php foreach ($leaveBalances as $type => $balance): ?>
+            <?php 
+            if($leaveBalances!=null)
+            {
+            foreach ($leaveBalances as $type => $balance): ?>
                 <p><strong><?php echo ucfirst($type); ?>:</strong> <?php echo htmlspecialchars($balance); ?> days</p>
-            <?php endforeach; ?>
+            <?php endforeach;
+            }
+            else
+            {
+               ?>
+             <p>No leave days taken yet</p>
+            
+            <?php
+            }
+             ?>
             <button>Request Leave</button>
         </div>
 

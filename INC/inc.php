@@ -69,51 +69,51 @@ class inc
     public function inner_nav()
     {
         ?>
+        
 
              <div class="inner_nav">
 
                  <a href="">
 
-                     <h3> Dashboard</h3>
+                     <h3> <i class="icon-dashboard">🏠</i>Dashboard</h3>
 
                  </a>
 
 
                  <a href="request_form.php">
 
-                     <h3> Request</h3>
+                     <h3> <i class="icon-profile">Graph📊</i></h3>
 
                  </a>
 
 
                  <a href="">
-                     <h3> Status</h3>
+                     <h3><i class="icon-leave-request">Request📅</i></h3>
                  </a>
+                 
+                 <a href="">
+                     <h3><i class="icon-leave-status">Status📋</i> </h3>
+                 </a>
+                 
+                 <a href="">
+                     <h3><i class="icon-statistics">Statistics📊</i></h3>
+                 </a>
+                  
+               <?php
+
+
+               ?>
 
 
              </div>
 
-             <?php
+            
              
 
 
-/*
-        ?>
-            <div class="dashboard">
-                <!-- Sidebar Menu -->
-                <div class="sidebar">
-                    <div class="menu-item"><i class="icon-dashboard">🏠</i></div>
-                    <div class="menu-item"><i class="icon-profile">👤</i></div>
-                    <div class="menu-item"><i class="icon-settings">⚙️</i></div>
-                    //add 4 more buttons set to direct to leave_request,leave_status,admin_statistics
-                    //add a display condition on admin statistics using js to ensure only HR and higher have this button
-                    available
-                    //comment the functions of your pages so people know which one to use for what
-                    //special conditions do not subtract
-                </div>
-
-                  <?php */  
-
+      
+<?php
+               
 
 
     }
