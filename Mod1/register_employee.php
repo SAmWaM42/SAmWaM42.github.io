@@ -50,7 +50,7 @@ if (isset($_POST['register_employee'])) {
             $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id, $gender_id);
 
             if ($message === "Employee registered successfully.") {
-                header("Location: Mod1/login_employee.php");
+                header("Location:login_employee.php");
                 exit();
             }
         } else {
