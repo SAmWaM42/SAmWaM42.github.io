@@ -6,13 +6,16 @@ class Organization {
         $this->conn = $db_conn;
     }
 
-    public function registerOrganization($org_name, $org_unique_id) {
-        $query = "INSERT INTO organization (name, unique_id) VALUES (?, ?)";
+    public function registerOrganization($org_name) {
+        // Insert organization with name, ID will be auto-generated
+        $query = "INSERT INTO organization (name) VALUES (?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss', $org_name, $org_unique_id);
+        $stmt->bind_param('s', $org_name);
 
         if ($stmt->execute()) {
-            return "Organization registered successfully! Your Organization ID is: " . $org_unique_id;
+            // Fetch the inserted organization ID
+            $org_id = $stmt->insert_id;
+            return "Organization registered successfully! Your Organization ID is: " . $org_id;
         } else {
             return "Error: " . $this->conn->error;
         }
