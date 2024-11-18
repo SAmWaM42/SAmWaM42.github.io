@@ -65,8 +65,10 @@ $title = 'Filter By Month or Name';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Leave Summary</title>
+     <link rel="stylesheet" href="../CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../Mod1/stylee.css">
+   
     <style>
          main{
             width: 90%;
