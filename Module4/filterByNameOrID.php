@@ -6,10 +6,12 @@ $connection = $conn->get_pdo_connection();
 
 try {
     // Retrieve filter values from POST request, defaulting to 0 for month and an empty string for employee name
+
     $month = isset($_POST['month']) ? (int)$_POST['month'] : 0;
     $employee_name = isset($_POST['employee_name']) ? trim($_POST['employee_name']) : '';
 
     // Query for retrieving records
+    
     $sql = "SELECT lr.type, lr.employee_ID, lr.start_date, lr.end_date, e.name 
             FROM leave_requests lr 
             JOIN employee e ON lr.employee_ID = e.ID 
