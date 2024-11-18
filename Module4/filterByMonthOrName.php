@@ -80,7 +80,7 @@ $title = 'Filter By Month or Name';
 <?php
     
     $includes->nav_bar();
-    $includes->inner_nav();
+    $includes->inner_nav("Filter By Month or Name");
     ?>
     <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
