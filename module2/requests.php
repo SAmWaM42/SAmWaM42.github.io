@@ -20,6 +20,7 @@ if (isset($_POST['status']) && isset($_POST['id'])) {
         $insertSql = "INSERT INTO leave_record (employee_ID, start_date, end_date, type, status)
                       SELECT employee_ID, start_date, end_date, type, '$status'
                       FROM leave_requests WHERE ID = $id";
+                      
         $connection->query($insertSql);
 
         // Delete the request from leave_requests table
