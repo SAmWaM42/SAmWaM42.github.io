@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once 'conn.php';
 require_once 'User.php';
 
@@ -28,7 +28,6 @@ if (isset($_POST['login_employee'])) {
     }
 }
 ?>
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +36,20 @@ if (isset($_POST['login_employee'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Employee</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific style for the "Don't have an account? Register" message and link */
+        .no-account {
+            color: brown;
+        }
+
+        .no-account a {
+            color: green;
+        }
+
+        .no-account a:hover {
+            color: darkgreen;
+        }
+    </style>
 </head>
 <body>
     <div class="logo-container">
@@ -52,7 +65,11 @@ if (isset($_POST['login_employee'])) {
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="login_employee" value="Login">
         </form>
+
+        <!-- Link for users who don't have an account -->
+        <div class="no-account">
+            <p>Don't have an account? <a href="register_employee.php">Register</a></p>
+        </div>
     </div>
 </body>
 </html>
-
