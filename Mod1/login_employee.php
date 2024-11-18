@@ -20,6 +20,7 @@ if (isset($_POST['login_employee'])) {
         $_SESSION['username'] = $result['name'];
         $_SESSION['user_id'] = $result['ID'];
         $_SESSION['org_name'] = $result['org_name'];
+        $_SESSION["role"]=$result['role_ID'];
 
         header("Location: /SAmWaM42.github.io/module3/Dashboard.php");
         exit();
