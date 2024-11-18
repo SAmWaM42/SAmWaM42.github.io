@@ -24,12 +24,10 @@ spl_autoload_register('classAutoLoad');
 $conn=new conn();
 $flow=new flow();
 $includes=new inc();
-<<<<<<< HEAD
-$conn->pdo_connection("localhost","3307","root","232312","easy_leave");
-=======
+
+
 $conn->connection("localhost:3308","root","HomeEcide42","easy_leave");
 $conn->pdo_connection("localhost","3308","root","HomeEcide42","easy_leave");
->>>>>>> 8ad5f0ec422d75fa18b5e78e089dbb6288310094
 $Objlbt = new leavebalancetracking($conn->get_pdo_connection());
 $Objretrieve = new retrieve($conn->get_pdo_connection());
 

@@ -70,7 +70,7 @@ $Objbalance->findBalance($user_id);
             <h2>Leave Requests and Approvals</h2>
             <?php foreach ($leaveRequests as $request): ?>
                 <div class="leave-request">
-                    <?php echo htmlspecialchars($request['leave_type']); ?> - 
+                    <?php echo htmlspecialchars($request['type']); ?> - 
                     <?php echo htmlspecialchars($request['status']); ?>
                 </div>
             <?php endforeach; ?>
