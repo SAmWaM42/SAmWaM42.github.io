@@ -37,12 +37,25 @@ if (isset($_POST['register_employee'])) {
     } elseif ($password !== $confirm_password) {
         $message = "Passwords do not match!";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id, $gender_id);
+        // Check if the gender_id exists in the gender table
+        $genderCheckQuery = "SELECT ID FROM gender WHERE ID = ?";
+        $stmt = $db_conn->prepare($genderCheckQuery);
+        $stmt->bind_param("i", $gender_id);
+        $stmt->execute();
+        $genderResult = $stmt->get_result();
 
-        if ($message === "Employee registered successfully.") {
-            header("Location: Mod1/login_employee.php");
-            exit();
+        if ($genderResult->num_rows > 0) {
+            // Valid gender_id, proceed with registration
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $message = $user->registerEmployee($username, $hashed_password, $org_id, $role_id, $gender_id);
+
+            if ($message === "Employee registered successfully.") {
+                header("Location: Mod1/login_employee.php");
+                exit();
+            }
+        } else {
+            // Invalid gender_id, return an error message
+            $message = "Invalid gender selected.";
         }
     }
 }
