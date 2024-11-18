@@ -77,7 +77,7 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
-<?php>
+<?php
     $includes->nav_bar();
     $includes->inner_nav();
     ?>
