@@ -75,6 +75,33 @@ try {
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
+    <nav class="navbar">
+    <div class="navbar__container">
+        <a href="#" id="navbar__logo" color: = "black"> <img src= "Images/Timeoff[1].jpg" width="65px"> TimeOff</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    Home
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a href="/" class="navbar__links">
+                    About
+                </a>
+            </li>
+            <li class="navbar__btn">
+                <a href="login_employee.php" class="button">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </div>
+    </nav>
     <nav class="bg-green-500 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
