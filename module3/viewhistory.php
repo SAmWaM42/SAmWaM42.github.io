@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "../load.php";
 class history {
     private $pdo;

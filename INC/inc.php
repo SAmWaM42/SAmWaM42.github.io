@@ -48,7 +48,7 @@ class inc
                     </div>
                     <ul class="navbar__menu">
                         <li class="navbar__item">
-                            <a href="" class="navbar__links">
+                            <a href="../index.html" class="navbar__links">
                                 Home
                             </a>
                         </li>
@@ -58,7 +58,7 @@ class inc
                             </a>
                         </li>
                         <li class="navbar__btn">
-                            <a href="/" class="button">
+                            <a href="../Mod1/register_org.php" class="button">
                                 Sign Up
                             </a>
                         </li>
@@ -75,14 +75,14 @@ class inc
 
             <div class="inner_nav">
 
-                <a href="">
+                <a href="../module3/Dashboard.php">
 
                     <h3> <i class="icon-dashboard">🏠</i>Dashboard</h3>
 
                 </a>
 
 
-                <a href="">
+                <a href="../module3/viewhistory.php">
 
                     <h3> <i class="icon-profile">Graph📊</i></h3>
 
@@ -95,74 +95,59 @@ class inc
                 </a>
 
 
-                <a href="Display3.php">
+                <a href="../module4/Display3.php">
                     <h3><i class="icon-statistics">Statistics📊</i></h3>
                 </a>
                 <?php
-
-
-
-                if ($_SESSION["role"] == "H.R."||$_SESSION["role"] == "Admin") {
+                if ($_SESSION["role"] == "H.R." || $_SESSION["role"] == "Admin") {
                     ?>
-                    <a href="requests.php">
+                    <a href="../module2/requests.php">
                         <h3><i class="icon-leave-status">Status📋</i> </h3>
                     </a>
 
                     <?php
                     if ($title == "Filter By Month or Name") {
                         ?>
-                        <a href="filterByNameOrID.php">
+                        <a href="../module4/filterByNameOrID.php">
                             <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
                         </a>
                         <?php
                     } else {
                         ?>
-                        <a href="filterByMonthOrName.php">
+                        <a href="../module4/filterByMonthOrName.php">
                             <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
                         </a>
                         <?php
                     }
-
-                    if ($_SESSION["role"] == "Admin") {
-                      
-                       
-                            ?>
-                            <a href="filterByNameOrID.php">
-                                <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
-                            </a>
-                            <?php
-                     
-                            ?>
-                            <a href="filterByMonthOrName.php">
-                                <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
-                            </a>
-                            <?php
-                     
-
                 }
 
+                    if ($_SESSION["role"] == "Admin") {
 
-                ?>
+
+                     ?>
+                        <a href="../module2/admin.php">
+                            <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
+                        </a>
+
+                    <?php
+
+
+                    }
+                
+                    ?>
+
+                 </div>
+
+
+
 
                 <?php
 
 
-                ?>
 
-
-            </div>
-
-
-
-
-
-
-            <?php
-
-
-
+                
     }
-}
+
     public function footer()
     {
         ?>

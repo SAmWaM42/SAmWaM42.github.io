@@ -11,7 +11,7 @@ $Objretrieve = new Retrieve($pdo);
 $Objbalance=new leavebalancetracking($pdo);
 
 // Sample employee ID for display (replace with session variable or dynamic ID in a real app)
-session_start();
+
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login page if not logged in
     header('Location: ../Mod1/login_employee.php');
@@ -38,16 +38,13 @@ $Objbalance->findBalance($user_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Balance Dashboard</title>
-    <link rel="stylesheet" href="../CSS/style.css">
+      <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="dash.css">
     <link rel="stylesheet" href="../Mod1/stylee.css">
-    
+  
 </head>
 <body>
-    <?php 
-        $includes ->nav_bar();
-        $includes ->inner_nav("matter");
-        ?>
+    
 
 <!---
     <div class="sidebar">
@@ -65,6 +62,10 @@ $Objbalance->findBalance($user_id);
 
     <!-- Main Content Area -->
     <div class="main-content">
+    <?php 
+        $includes ->nav_bar();
+        $includes ->inner_nav("matter");
+        ?>
         <h1>Leave Balance Dashboard</h1>
         
         <!-- Employee Info -->

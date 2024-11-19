@@ -20,9 +20,12 @@ $result = $connection->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
 
+    <link rel="stylesheet"href="../CSS/style.css">
+        <link rel="stylesheet" href="../mod1/stylee.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="requests.css">
+
 
 </head>
 <body>
@@ -43,6 +46,7 @@ $result = $connection->query($sql);
 </nav>
 
 <main>
+    <?php $includes->inner_nav("whatever"); ?>
    
     <div class="tbl"> 
         <br>
