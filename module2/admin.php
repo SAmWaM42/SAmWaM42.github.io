@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 require_once('../load.php');
 
@@ -9,7 +9,7 @@ if ($connection->connect_error) {
 }
 
 // Retrieve employee records
-$sql = "SELECT name, gender_id, ID, org_ID, role_ID, Role FROM employee";
+$sql = "SELECT name,gender_id, ID, org_ID, role_ID FROM employee";
 $result = $connection->query($sql);
 ?>
 
@@ -19,9 +19,11 @@ $result = $connection->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="requests.css">
+
 </head>
 <body>
 <nav class="navbar">
@@ -41,6 +43,7 @@ $result = $connection->query($sql);
 </nav>
 
 <main>
+   
     <div class="tbl"> 
         <br>
         <br>
@@ -54,7 +57,7 @@ $result = $connection->query($sql);
                 <th>ID</th>
                 <th>ORGANIZATION ID</th>
                 <th>ROLE ID</th>
-                <th>ROLE</th>
+              
                 <th>ACTION</th>
                 <th>EDIT</th>
             </tr>
@@ -69,7 +72,7 @@ $result = $connection->query($sql);
                         echo "<td>" . htmlspecialchars($row['ID']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['org_ID']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['role_ID']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Role']) . "</td>";
+                   
                         echo "<td>
                             <form method='POST' style='display:inline-block;'>
                                 <input type='hidden' name='delete_id' value='" . htmlspecialchars($row['ID']) . "' />

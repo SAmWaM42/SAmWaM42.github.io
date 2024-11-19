@@ -1,7 +1,8 @@
 <?php
+require_once "../load.php";
 class inc
 {
-    
+
     public function header($title)
     {
         ?>
@@ -70,85 +71,104 @@ class inc
     public function inner_nav($title)
     {
         ?>
-        
-
-             <div class="inner_nav">
-
-                 <a href="">
-
-                     <h3> <i class="icon-dashboard">🏠</i>Dashboard</h3>
-
-                 </a>
 
 
-                 <a href="request_form.php">
+            <div class="inner_nav">
 
-                     <h3> <i class="icon-profile">Graph📊</i></h3>
+                <a href="">
 
-                 </a>
+                    <h3> <i class="icon-dashboard">🏠</i>Dashboard</h3>
+
+                </a>
 
 
-                 <a href="">
-                     <h3><i class="icon-leave-request">Request📅</i></h3>
-                 </a>
-                 
-                 <a href="requests.php">
-                     <h3><i class="icon-leave-status">Status📋</i> </h3>
-                 </a>
-                 
-                 <a href="Display3.php">
-                     <h3><i  class="icon-statistics">Statistics📊</i></h3>
-                 </a>
-                 <?php
-                 
-                    
-                   
-                    if($title ==  "Filter By Month or Name")
-                        {
+                <a href="">
+
+                    <h3> <i class="icon-profile">Graph📊</i></h3>
+
+                </a>
+
+
+                <a href="../module2/request_form.php">
+
+                    <h3><i class="icon-leave-request">Request📅</i></h3>
+                </a>
+
+
+                <a href="Display3.php">
+                    <h3><i class="icon-statistics">Statistics📊</i></h3>
+                </a>
+                <?php
+
+
+
+                if ($_SESSION["role"] == "H.R."||$_SESSION["role"] == "Admin") {
+                    ?>
+                    <a href="requests.php">
+                        <h3><i class="icon-leave-status">Status📋</i> </h3>
+                    </a>
+
+                    <?php
+                    if ($title == "Filter By Month or Name") {
                         ?>
                         <a href="filterByNameOrID.php">
-                        <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
+                            <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
                         </a>
                         <?php
-                        }
-                        else
-                        {
+                    } else {
+                        ?>
+                        <a href="filterByMonthOrName.php">
+                            <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
+                        </a>
+                        <?php
+                    }
+
+                    if ($_SESSION["role"] == "Admin") {
+                      
+                       
+                            ?>
+                            <a href="filterByNameOrID.php">
+                                <h3><i class="icon-leave-history">Filter By Name or ID📜</i></h3>
+                            </a>
+                            <?php
+                     
                             ?>
                             <a href="filterByMonthOrName.php">
-                            <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
-                             </a>
-                             <?php
-                        }
+                                <h3><i class="icon-leave-history">Filter By Month Or Name📜</i></h3>
+                            </a>
+                            <?php
+                     
 
-                    
-                    
-                
-                 ?>
-                  
-               <?php
+                }
 
 
-               ?>
+                ?>
+
+                <?php
 
 
-             </div>
-
-            
-             
+                ?>
 
 
-      
-<?php
-               
+            </div>
+
+
+
+
+
+
+            <?php
+
 
 
     }
+}
     public function footer()
     {
         ?>
-                <div class="footer__container">
-                    <p class="website__right"> TimeOff 2024. All rights reserved</p>
-                </div>
+            <div class="footer__container">
+                <p class="website__right"> TimeOff 2024. All rights reserved</p>
+            </div>
 
         </body>
 

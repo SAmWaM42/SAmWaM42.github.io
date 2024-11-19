@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Class Auto Load
 function classAutoLoad($classname)
 {

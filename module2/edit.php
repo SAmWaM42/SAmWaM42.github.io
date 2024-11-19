@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('../load.php');
 
 $connection = $conn->get_connection();
@@ -21,7 +20,8 @@ if (isset($_GET['id'])) {
     if (!$employee) {
         die("Employee not found.");
     }
-} else {
+} else 
+{
     die("Invalid request.");
 }
 

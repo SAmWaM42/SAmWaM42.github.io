@@ -20,7 +20,9 @@ if (isset($_POST['login_employee'])) {
         $_SESSION['username'] = $result['name'];
         $_SESSION['user_id'] = $result['ID'];
         $_SESSION['org_name'] = $result['org_name'];
-        $_SESSION["role"]=$result['role_ID'];
+        $s_id=$result['role_ID'];
+        $id_raw=$db_conn->execute_query("select name from roles where ID =$s_id");
+        $_SESSION["role"]=$id_raw->fetch_assoc()['name'];
 
         header("Location:../module3/Dashboard.php");
         exit();
