@@ -38,8 +38,10 @@ $Objbalance->findBalance($user_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Balance Dashboard</title>
+    <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="dash.css">
-    <link rel="stylesheet" href="../stylee.css">
+    <link rel="stylesheet" href="../Mod1/stylee.css">
+    
 </head>
 <body>
     <?php 
