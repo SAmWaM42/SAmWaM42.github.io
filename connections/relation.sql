@@ -60,6 +60,8 @@ CREATE TABLE leave_balance (
     annual_leave_balance INT DEFAULT 0,
     sick_leave_balance INT DEFAULT 0,
     maternity_leave_balance INT DEFAULT 0,
+    paternity_leave_balance INT DEFAULT 0,  -- Added column for Paternity Leave
+    compassionate_leave_balance INT DEFAULT 0, -- Added column for Compassionate Leave
     last_accrual_date DATE NOT NULL,
     CONSTRAINT FOREIGN KEY (emp_id)
         REFERENCES employee (ID)

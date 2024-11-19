@@ -26,8 +26,8 @@ $flow=new flow();
 $includes=new inc();
 
 
-$conn->connection("localhost:3308","root","HomeEcide42","easy_leave");
-$conn->pdo_connection("localhost","3308","root","HomeEcide42","easy_leave");
+$conn->connection("localhost:3306","root","","easy_leave");
+$conn->pdo_connection("localhost","3306","root","","easy_leave");
 $Objlbt = new leavebalancetracking($conn->get_pdo_connection());
 $Objretrieve = new retrieve($conn->get_pdo_connection());
 

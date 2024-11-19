@@ -45,12 +45,16 @@ class leavebalancetracking {
                 $annualLeave = $leaveTypes['Annual'] ?? 0;
                 $sickLeave = $leaveTypes['Sick'] ?? 0;
                 $maternityLeave = $leaveTypes['Maternity'] ?? 0;
+                $compassionateLeave = $leaveTypes['Compassionate']??0;
+                $paternityLeave = $leaveTypes['Paternity']??0;
     
                 // Bind values explicitly
                 $stmt3->bindValue(':emp_id', $emp_id, PDO::PARAM_INT);
                 $stmt3->bindValue(':annual_leave_balance', $annualLeave, PDO::PARAM_INT);
                 $stmt3->bindValue(':sick_leave_balance', $sickLeave, PDO::PARAM_INT);
                 $stmt3->bindValue(':maternity_leave_balance', $maternityLeave, PDO::PARAM_INT);
+                $stmt3->bindvalue(':compassionate_leave_balance',$paternityLeave,PDO::PARAM_INT);
+                $stmt3->bindvalue(':paternity_leave_balance',$compassionateLeave,PDO::PARAM);
     
                 $stmt3->execute();
             }
