@@ -7,18 +7,7 @@ class history {
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
-    public function getTypes($emp_id){
-    $sql = "SELECT e.name, lb.annual_leave_balance, lb.sick_leave_balance, lb.maternity_leave_balance
-        FROM employee e
-        JOIN leave_balance lb ON e.ID = lb.emp_id
-        WHERE e.ID = ?";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return $result;
-}
 
     public function getEmployeeInfo($emp_id) {
         $sql = "SELECT name FROM employee WHERE ID = ?";
@@ -103,6 +92,102 @@ class history {
         // Optionally return or output the total available days
         return $totalDaysAvailable; // Return the total available days
     }
+    public function getTypes($emp_id) {
+        // Prepare the SQL statement to fetch employee name and leave balances
+        $sql = "SELECT e.name, lb.annual_leave_balance, lb.sick_leave_balance, lb.maternity_leave_balance, lb.paternity_leave_balance, lb.compassionate_leave_balance
+                FROM employee e
+                JOIN leave_balance lb ON e.ID = lb.emp_id
+                WHERE e.ID = ?";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(1, $emp_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result) {
+            $employeeName = $result['name'];
+            $leaveBalances = [
+                'Annual Leave' => $result['annual_leave_balance'],
+                'Sick Leave' => $result['sick_leave_balance'],
+                'Maternity Leave' => $result['maternity_leave_balance'],
+                'Paternity Leave' => $result['paternity_leave_balance'],
+                'Compassionate Leave' => $result['compassionate_leave_balance']
+            ];
+    
+            // Output the HTML and JavaScript for the chart
+            echo '<div class="sick_stats">
+                    <h2 class="chart_heading">Type of Leave</h2>
+                    <div class="chart_container">
+                        <canvas id="leaveChart" width="400" height="400" aria-label="Type of leave" role="img"></canvas>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                var employeeName = "' . htmlspecialchars($employeeName) . '";
+                                var leaveBalances = ' . json_encode(array_values($leaveBalances)) . '; // Get values only for chart
+                                var leaveTypes = ' . json_encode(array_keys($leaveBalances)) . '; // Get keys for labels
+    
+                                // Extract leave balances for the chart
+                                var sickdays = leaveBalances[1]; // Assuming Sick Leave is at index 1
+                                var maternity = leaveBalances[2]; // Assuming Maternity Leave is at index 2
+                                var paternity = leaveBalances[3]; // Assuming Paternity Leave is at index 3
+                                var compassionate = leaveBalances[4]; // Assuming Compassionate Leave is at index 4
+    
+                                // Create the pie chart
+                                const ctx = document.getElementById("leaveChart").getContext("2d");
+                                
+                                const myChart = new Chart(ctx, {
+                                    type: "pie",
+                                    data: {
+                                        labels: ["Sick Days", "Maternity Leave", "Paternity Leave", "Compassionate Leave"],
+                                        datasets: [{
+                                            data: [sickdays, maternity, paternity, compassionate],
+                                            backgroundColor: [
+                                                "rgba(255, 99, 13, 0.6)", // Red for Sick days
+                                                "rgba(54, 162, 235, 0.6)", // Blue for Maternity Leave
+                                                "rgba(255, 0, 0, 0.6)", // Black for Paternity Leave
+                                                "rgba(0, 255, 0, 0.6)" // Green for Compassionate leave
+                                            ],
+                                            borderColor: [
+                                                "rgba(255, 99, 132, 1)",
+                                                "rgba(54, 162, 235, 1)",
+                                                "rgba(255, 0, 0, 0.6)",
+                                                "rgba(0, 255, 0, 0.6)"
+                                            ],
+                                            borderWidth: 1
+                                        }],
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                                position: "top",
+                                            },
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: function(tooltipItem) {
+                                                        return tooltipItem.label + ": " + tooltipItem.raw + " days";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+    
+                    <div class="details">
+                        <ul>
+                            <li>Sick Days remaining: <span class="sickdaysRemaining percentage"></span></li>
+                            <li>Sick Days taken: <span class="sickdaysTaken percentage"></span></li>
+                        </ul>
+                    </div>
+                </div>';
+        } else {
+            // Handle case where employee is not found
+            echo "Employee not found.";
+        }
+    }
     
     
 
@@ -119,19 +204,8 @@ $his=new history($conn->get_pdo_connection());
         $_SESSION["user_id"]
     );
  $Objlbt->assignBalance();
-   $result=$his->getTypes($_SESSION["user_id"]);
-   if ($result) {
-    $employeeName = $result['name'];
-    $leaveBalances = [
-        'Annual Leave' => $result['annual_leave_balance'],
-        'Sick Leave' => $result['sick_leave_balance'],
-        'Maternity Leave' => $result['maternity_leave_balance']
-    ];
-} else {
-    // Handle case where employee is not found
-    echo "Employee not found.";
 
-}
+   
 
 ?>
 <!DOCTYPE html>
@@ -213,8 +287,11 @@ $his=new history($conn->get_pdo_connection());
     </div>
    
 </div>
+<?php 
+    $his->getTypes($_SESSION["user_id"]);
+    ?>
   
-    <div class="sick_stats">
+    <!--<div class="sick_stats">
         <h2 class="chart_heading">Type of Leave</h2>
         <div class="chart_container">
             <canvas class="my_chart2" width="400" height="400" aria-label=" Type of leave" role="img"></canvas>
@@ -286,7 +363,7 @@ $his=new history($conn->get_pdo_connection());
                 <li>Sick Days taken: <span class="percentage"></span></li>
             </ul>
         </div>
-    </div>
+    </div>-->
 </div>
 </div>
 </body>
